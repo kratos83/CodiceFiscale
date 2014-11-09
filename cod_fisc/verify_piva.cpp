@@ -61,6 +61,9 @@ QString verify_piva::read_piva(QString code)
 {
 
     int i;
+    int p_pari = 0;
+    int p_dispari = 0;
+    int num_sup = 0;
 
     QString testo_ndigit = QString::fromUtf8("Errore: Non hai inserito nessun numero.");
 
@@ -85,17 +88,27 @@ QString verify_piva::read_piva(QString code)
     }
     else{
         for(i=0; i<code.length();i++){
-            if(code[i].toLatin1() < '0' || code[i].toLatin1() >'9'){
-                ui->icona->setPixmap(QPixmap(QString::fromUtf8(":/images/dialog-close.png")));
-                ui->es_er->setText(testo_p_nvalida);
+            if(((i+1)%2)==0){
+                int k = toascii(code[i].toLatin1()) - toascii('0');
+                p_pari += k;
+                if(k>5)
+                    num_sup++;
             }
-            else{
-                ui->icona->setPixmap(QPixmap(QString::fromUtf8(":/images/dialog-ok-apply.png")));
-                ui->es_er->setText(testo_p_valida);
-            }
+            else
+                p_dispari += toascii(code[i].toLatin1())- toascii('0');
         }
     }
 
+    int tot = p_pari + p_dispari + num_sup;
+    p_pari = tot % 10;
+    if(tot == ((10 -p_pari) %10) ){
+        ui->icona->setPixmap(QPixmap(QString::fromUtf8(":/images/dialog-close.png")));
+        ui->es_er->setText(testo_p_nvalida);
+    }
+    else{
+        ui->icona->setPixmap(QPixmap(QString::fromUtf8(":/images/dialog-ok-apply.png")));
+        ui->es_er->setText(testo_p_valida);
+    }
     return code;
 }
 

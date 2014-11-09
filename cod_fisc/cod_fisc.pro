@@ -5,11 +5,11 @@
 #-------------------------------------------------
 
 greaterThan(QT_MINOR_VERSION, 4){
- QT += core gui qt3support xml
+ QT += core gui qt3support xml network
 }
 
 greaterThan(QT_MAJOR_VERSION, 4){
- QT += core gui widgets printsupport xml
+ QT += core gui widgets printsupport xml network
 }
 
 TARGET = codicefiscale

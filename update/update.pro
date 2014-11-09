@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql xml network qt3support svg
+QT       += core gui xml network qt3support
 
 TARGET = ../cod_fisc/update
 TEMPLATE = app

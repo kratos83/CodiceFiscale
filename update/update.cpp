@@ -141,8 +141,6 @@ void update::downloadReadyRead(){
     fileNames << filename;
 #if defined (Q_OS_LINUX)
     lin_start->start("chmod 777 "+filename);
-#elif defined (Q_OS_MAC)
-    lin_start->start("chmod 777 "+filename);
 #endif
 }
 
@@ -190,10 +188,10 @@ void update::install_package(){
 
 void update::display_progress_bar()
 {
-#ifdef Q_OS_LINUX
+#if defined (Q_OS_LINUX)
     int val = lin_start->readLine().toInt();
-#elif Q_OS_WIN
-    int val = win_start->readLine().toInt()
+#elif defined(Q_OS_WIN)
+    int val = win_start->readLine().toInt();
 #endif
     for(val=0;val <= 100; val++){
         unzip_file->setValue(val);

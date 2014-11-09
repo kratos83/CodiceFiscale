@@ -190,8 +190,11 @@ void update::install_package(){
 
 void update::display_progress_bar()
 {
+#ifdef Q_OS_LINUX
     int val = lin_start->readLine().toInt();
-
+#elif Q_OS_WIN
+    int val = win_start->readLine().toInt()
+#endif
     for(val=0;val <= 100; val++){
         unzip_file->setValue(val);
     }

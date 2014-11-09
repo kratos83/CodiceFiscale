@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/install.png</file>
+        <file>images/pause.png</file>
+        <file>images/start.png</file>
+        <file>images/upgrade.png</file>
+        <file>images/codice_fiscale_logo.png</file>
+    </qresource>
+</RCC>

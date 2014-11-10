@@ -29,13 +29,10 @@ Fix qfiledialog
 /***************************************
 CodiceFiscale 1.1
 
-* Calcolo del codice fiscale italiano e estero
-
-* Inserita l\\\'opzione di esportazione in immagine e pdf
-
-* Sistemata l\\\'interfaccia grafica
-
-* Inserita stringa nel codice e about \\\"Partial of code Francesco Betti Sorbelli\\\"
+Calcolo del codice fiscale italiano e estero
+Inserita l\\\'opzione di esportazione in immagine e pdf
+Sistemata l\\\'interfaccia grafica
+Inserita stringa nel codice e about \\\"Partial of code Francesco Betti Sorbelli\\\"
 ******************************************/
 
 /****************************************

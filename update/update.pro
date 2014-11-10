@@ -9,6 +9,7 @@ QT       += core gui xml network qt3support
 TARGET = ../cod_fisc/update
 TEMPLATE = app
 CONFIG += link_prl
+CONFIG += release
 
 OBJECTS_DIR = build
 MOC_DIR = build

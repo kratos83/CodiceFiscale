@@ -2,7 +2,8 @@ Source: codicefiscale
 Section: office
 Priority: optional
 Maintainer: Codelinsoft <info@codelinsoft.it>
-Build-Depends: debhelper (>= 8.0.0),libqt4-core, libqt4-gui
+Build-Depends: debhelper (>= 8.0.0),libqt4-core, libqt4-gui, libqt4-xml, libqt4-qt3support,
+  libqt4-network
 Standards-Version: 3.9.2
 
 Package: codicefiscale

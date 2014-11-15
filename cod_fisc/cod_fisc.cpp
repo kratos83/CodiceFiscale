@@ -105,7 +105,7 @@ void cod_fisc::interfaccia_signal()
     today = ui->calendarWidget->date();
     ui->calendarWidget->setDate(QDate::currentDate());
     QStringList lista;
-    lista << "Comuni" << "Stati";
+    lista << tr("Comuni") << tr("Stati");
     ui->comboBox_sel->addItems(lista);
     img = QImage(":/images/codicefiscale.png");
 }

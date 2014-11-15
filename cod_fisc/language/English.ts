@@ -193,6 +193,16 @@
         <translation>Search update</translation>
     </message>
     <message>
+        <location filename="../cod_fisc.cpp" line="108"/>
+        <source>Comuni</source>
+        <translation>City</translation>
+    </message>
+    <message>
+        <location filename="../cod_fisc.cpp" line="108"/>
+        <source>Stati</source>
+        <translation>State</translation>
+    </message>
+    <message>
         <location filename="../cod_fisc.cpp" line="611"/>
         <source>Inserisci il cognome
 </source>
@@ -367,31 +377,31 @@ generali</source>
         <translation>General settings</translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="217"/>
+        <location filename="../pref.cpp" line="221"/>
         <source>E&apos; disponibile la nuova versione </source>
         <translation>There is a new version</translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="217"/>
+        <location filename="../pref.cpp" line="221"/>
         <source>,se vuoi aggiornare clicca per aggiornare.
 Se clicchi ok si chiude il programma e si aggiorna il software alla nuova versione</source>
         <translation>If you want to update , click to update.
 If you click OK to close the program and updating the software to the new version</translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="235"/>
         <location filename="../pref.cpp" line="239"/>
+        <location filename="../pref.cpp" line="243"/>
         <source>CodiceFiscale</source>
         <translation>Tax code</translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="235"/>
+        <location filename="../pref.cpp" line="239"/>
         <source>Errore...
 </source>
         <translation>Errore...</translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="239"/>
+        <location filename="../pref.cpp" line="243"/>
         <source>Stai usando la nuova versione</source>
         <translation>Are you using the new version</translation>
     </message>

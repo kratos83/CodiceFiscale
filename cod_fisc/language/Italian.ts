@@ -193,6 +193,16 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../cod_fisc.cpp" line="108"/>
+        <source>Comuni</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../cod_fisc.cpp" line="108"/>
+        <source>Stati</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../cod_fisc.cpp" line="611"/>
         <source>Inserisci il cognome
 </source>
@@ -367,30 +377,30 @@ generali</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="217"/>
+        <location filename="../pref.cpp" line="221"/>
         <source>E&apos; disponibile la nuova versione </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="217"/>
+        <location filename="../pref.cpp" line="221"/>
         <source>,se vuoi aggiornare clicca per aggiornare.
 Se clicchi ok si chiude il programma e si aggiorna il software alla nuova versione</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="235"/>
         <location filename="../pref.cpp" line="239"/>
+        <location filename="../pref.cpp" line="243"/>
         <source>CodiceFiscale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="235"/>
+        <location filename="../pref.cpp" line="239"/>
         <source>Errore...
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../pref.cpp" line="239"/>
+        <location filename="../pref.cpp" line="243"/>
         <source>Stai usando la nuova versione</source>
         <translation type="unfinished"></translation>
     </message>

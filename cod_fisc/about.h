@@ -104,6 +104,9 @@ private:
      * \param ui;
      */
     Ui::about *ui;
+
+protected:
+    void changeEvent(QEvent *e);
 };
 
 #endif // ABOUT_H

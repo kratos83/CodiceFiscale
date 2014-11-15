@@ -61,6 +61,11 @@ codicefiscale_logo.files= images/codicefisc.png
 target.path = /opt/codicefiscale/
 
 INSTALLS += codicefiscale_desktop_file codicefiscale_logo target
+macx:ICON = images/codicefiscale.icns
 }
-RESOURCES = cod_fisc.qrc
+RESOURCES = cod_fisc.qrc \
+            lang.qrc
 RC_FILE = winicon.rc
+
+TRANSLATIONS = language/English.ts \
+               language/Italian.ts

@@ -50,12 +50,19 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    if(settings->generalValue("Version/version",QVariant()).toString().length() == 0){
-        settings->setGeneralValue("Version/version","2.0");
+    if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "2.0"){
+        settings->setGeneralValue("Version/version","2.1");
     }
     else{
             settings->generalValue("Version/version",QVariant()).toString();
     }
+
+    /*
+     * Translate QDialog
+     */
+    QTranslator translator;
+    translator.load(":/language/language/"+settings->generalValue("Language/language",QVariant()).toString()+".qm");
+    a.installTranslator(&translator);
 
     cod_fisc *codice = new cod_fisc;
     codice->show();

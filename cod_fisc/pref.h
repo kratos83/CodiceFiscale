@@ -54,6 +54,7 @@
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 #include <QtGui>
+#include <QLocale>
 #include <QProcess>
 #include <QVector>
 
@@ -80,6 +81,7 @@ public:
     QListWidgetItem *configButton,*updateButton;
     SettingsManager *settings;
     QProcess *process;
+    QString default_language;
 
 protected:
     void changeEvent(QEvent *e);
@@ -102,6 +104,8 @@ public slots:
     void visagg();
     void up_dw(QString package, QString url);
     void esci();
+    void combo_language();
+    QString set_language();
 };
 
 #endif // PREF_H

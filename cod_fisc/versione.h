@@ -47,7 +47,7 @@
  *
  * \param VERSION
  */
-#define VERSION 2.0
+#define VERSION 2.1
 
 #include <QtCore>
 

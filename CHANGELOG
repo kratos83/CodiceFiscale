@@ -1,4 +1,12 @@
 /******************************************
+CodiceFiscale 2.1
+
+Add language selection
+Fix check VAT
+FIX check tax code
+Port qt5 completed
+
+/******************************************
 CodiceFiscale 2.0
 Aggiunto supporto impostazioni
 Aggiunto supporto aggiornamento

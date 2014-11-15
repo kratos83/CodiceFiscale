@@ -28,6 +28,7 @@ pref::pref(QWidget *parent) :
     interface();
     readsettings();
     visagg();
+    combo_language();
 }
 
 
@@ -57,6 +58,9 @@ void pref::readsettings(){
     appfnt.fromString(settings->generalValue("Application/font","Verdana,-1,11,5,50,0,0,0,0,0").toString());
     cmbApplicationFontName->setFont(appfnt);
     spinApplicationFontSize->setValue(appfnt.pixelSize());
+
+    select_lingua->setCurrentText(settings->generalValue("Language/language",QVariant()).toString());
+
 }
 
 void pref::agg_en(){
@@ -112,6 +116,7 @@ void pref::applica(){
     settings->setGeneralValue("AGGIOR/auto_en",en_update->isChecked());
     settings->setGeneralValue("AGGIOR/auto_ds",ds_update->isChecked());
 
+    settings->setGeneralValue("Language/language",select_lingua->currentText());
 
     readsettings();
     emit load_plugins();
@@ -158,6 +163,10 @@ void pref::self_update(){
     connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(self_update_parse(QNetworkReply*)));
 #elif defined(_WIN32)
     QUrl url("http://www.codelinsoft.it/package/codicefiscale/codfisc-win32.xml");
+    manager->get(QNetworkRequest(QUrl(url)));
+    connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(self_update_parse(QNetworkReply*)));
+#elif defined(Q_OS_MACX)
+    QUrl url("http://www.codelinsoft.it/package/codicefiscale/codfisc-macx.xml");
     manager->get(QNetworkRequest(QUrl(url)));
     connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(self_update_parse(QNetworkReply*)));
 #endif
@@ -209,8 +218,8 @@ void pref::self_update_parse(QNetworkReply* reply){
                     QMessageBox *box= new QMessageBox(this);
                     box->setWindowTitle("CodiceFiscale");
                     box->setText("Aggiornamento");
-                    box->setInformativeText("E' disponibile la nuova versione "+versione+ ",se vuoi aggiornare clicca per aggiornare.\n"
-                                            "Se clicchi ok si chiude il programma e si aggiorna il software alla nuova versione");
+                    box->setInformativeText(tr("E' disponibile la nuova versione ")+versione+ tr(",se vuoi aggiornare clicca per aggiornare.\n"
+                                            "Se clicchi ok si chiude il programma e si aggiorna il software alla nuova versione"));
                     box->setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
                     box->setDefaultButton(QMessageBox::Ok);
                     int ret = box->exec();
@@ -227,11 +236,11 @@ void pref::self_update_parse(QNetworkReply* reply){
                          }
             }
             else if(reply->error()){
-                QMessageBox::warning(this,"CodiceFiscale",QString("Errore...\n").arg(reply->errorString()));
+                QMessageBox::warning(this,tr("CodiceFiscale"),QString(tr("Errore...\n")).arg(reply->errorString()));
             }
             else{
                     // Update success dialog
-                QMessageBox::information(this,"CodiceFiscale","Stai usando la nuova versione");
+                QMessageBox::information(this,tr("CodiceFiscale"),tr("Stai usando la nuova versione"));
             }
 }
 
@@ -242,6 +251,8 @@ void pref::up_dw(QString package, QString url){
     process->start("./update -u "+url+" -p "+package);
 #elif defined(Q_OS_WIN)
     process->start("C:\\CodiceFiscale\\update -u "+url+" -p "+package);
+#elif defined(Q_OS_MACX)
+    process->start("./update.app/Contents/MacOS/update -u"+url+" -p"+package);
 #endif
 }
 
@@ -249,6 +260,25 @@ void pref::up_dw(QString package, QString url){
 void pref::esci()
 {
     close();
+}
+
+void pref::combo_language()
+{
+    const QDir lang_dir(":/language/language");
+    const QStringList files = lang_dir.entryList(QStringList() << "*.qm");
+    foreach (QString lang_file, files) {
+        lang_file = lang_file.split('.').first();
+        select_lingua->addItem(lang_file);
+    }
+
+    default_language = set_language();
+    if(files.contains(default_language+".qm"))
+        default_language = "English";
+}
+
+QString pref::set_language()
+{
+    return QLocale::languageToString(QLocale().language());
 }
 
 void pref::changeEvent(QEvent *e)

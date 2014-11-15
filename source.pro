@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 SUBDIRS       = update \
-			cod_fisc
+                cod_fisc
 
 CONFIG += ordered 

@@ -50,11 +50,23 @@ about::about(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("About");
-    ui->testo->setText("CodiceFiscale "+settingsManager->generalValue("Version/version").toString());
+    ui->testo->setText(tr("CodiceFiscale ")+settingsManager->generalValue("Version/version").toString());
     connect(ui->esci,SIGNAL(clicked()),this,SLOT(close()));
 }
 
 about::~about()
 {
     delete ui;
+}
+
+void about::changeEvent(QEvent *e)
+{
+    QDialog::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
 }

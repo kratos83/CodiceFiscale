@@ -16,14 +16,17 @@ MOC_DIR = build
 RCC_DIR = build
 
 SOURCES += main.cpp\
-           update.cpp
+           update.cpp \
+           settingsmanager.cpp
 
-HEADERS  += update.h
+HEADERS  += update.h \
+            settingsmanager.h
 
 FORMS    += update.ui
 
 RESOURCES += \
-    update.qrc
+            update.qrc \
+    lang.qrc
 
 unix{
 
@@ -32,3 +35,5 @@ target.path = /opt/codicefiscale
 INSTALLS += target
 }
 
+TRANSLATIONS = language/English.ts \
+               language/Italian.ts

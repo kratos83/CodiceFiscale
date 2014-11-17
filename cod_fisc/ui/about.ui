@@ -24,26 +24,10 @@
     <normaloff>:/images/codicefisc.png</normaloff>:/images/codicefisc.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="1">
-    <widget class="QPushButton" name="esci">
+   <item row="2" column="0" colspan="2">
+    <widget class="QLabel" name="label">
      <property name="text">
-      <string>Esci</string>
-     </property>
-     <property name="icon">
-      <iconset resource="../cod_fisc.qrc">
-       <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="testo">
-     <property name="font">
-      <font>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Copyright (C) 2014 Codelinsoft. All rights reserved. &lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Partial of code cod_fisc.cpp e cod_fisc.h Francesco Betti Sorbelli&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
@@ -69,7 +53,7 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="0">
+   <item row="3" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -82,10 +66,26 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="QLabel" name="label">
+   <item row="3" column="1">
+    <widget class="QPushButton" name="esci">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Partial of code cod_fisc.cpp e cod_fisc.h Francesco Betti Sorbelli&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>Esci</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../cod_fisc.qrc">
+       <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="testo">
+     <property name="font">
+      <font>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>

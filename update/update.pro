@@ -4,7 +4,13 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml network qt3support
+greaterThan(QT_MINOR_VERSION, 4){
+ QT += core gui qt3support xml network
+}
+
+greaterThan(QT_MAJOR_VERSION, 4){
+ QT += core gui widgets printsupport xml network
+}
 
 TARGET = ../cod_fisc/update
 TEMPLATE = app

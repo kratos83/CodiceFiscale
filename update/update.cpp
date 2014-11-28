@@ -115,6 +115,8 @@ void update::downloadFinished(){
                 QString fileNames=direct->currentDirPath()+"/"+filename+".part";
 #elif defined(Q_OS_WIN)
                 QString fileNames=direct->currentDirPath()+"\\"+filename+".part";
+#elif defined(Q_OS_UNIX)
+                QString fileNames=direct->currentDirPath()+"/"+filename+".part";
 #endif
                 if(currentDownload->error()){
                     QString ts = tr("Download fallito: ")+currentDownload->errorString();
@@ -191,6 +193,10 @@ void update::install_package(){
     mac_start = new QProcess(this);
     connect(mac_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
     mac_start->start("unzip -o "+file_dir+" -d /Applications/CodiceFiscale/");
+#elif defined(Q_OS_UNIX)
+   unix_start = new QProcess(this);
+   connect(unix_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
+   unix_start->start("pkexec unzip -o "+file_dir+" -d /opt/codicefiscale/");
 #endif
 }
 
@@ -202,6 +208,8 @@ void update::display_progress_bar()
     int val = win_start->readLine().toInt();
 #elif defined(Q_OS_MAC64)
     int val = mac_start->readLine().toInt();
+#elif defined(Q_OS_UNIX)
+    int val = unix_start->readLine().toInt();
 #endif
     for(val=0;val <= 100; val++){
         unzip_file->setValue(val);
@@ -210,7 +218,7 @@ void update::display_progress_bar()
 }
 
 void update::error(QNetworkReply::NetworkError code){
-    textEdit->setText(tr("Download fallito ")+code);
+    textEdit->setText(tr("Download fallito "));
 }
 
 update::~update()

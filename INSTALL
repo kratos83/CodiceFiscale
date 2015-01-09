@@ -5,9 +5,9 @@ http://www.codelinsoft.it/sito/2013-11-17-17-56-34/codice-fiscale.html
 
 Una volta scaricato aprire il terminale e dicitare i seguenti comandi
 
-tar -xvzf codicefiscale-1.3.tar.gz
+tar -xvzf codicefiscale-2.2.tar.gz
 
-cd codicefiscale-1.3
+cd codicefiscale-2.2
 qmake
 make-j5
 sudo make install

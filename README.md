@@ -1,4 +1,4 @@
-CodiceFiscale 2.1
+CodiceFiscale 2.2
 =========
 
 Calcolo del codice fiscale

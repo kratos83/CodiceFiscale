@@ -50,6 +50,21 @@ FORMS    += ui/cod_fisc.ui \
             ui/find_cap_italian.ui \
             ui/pref.ui
 
+
+unix{
+
+codicefiscale_desktop_file.path = /usr/share/applications
+codicefiscale_desktop_file.files = desktop/*
+
+codicefiscale_logo.path=/opt/codicefiscale
+codicefiscale_logo.files= images/codicefisc.png
+
+target.path = /opt/codicefiscale/
+
+INSTALLS += codicefiscale_desktop_file codicefiscale_logo target
+macx:ICON = images/codicefiscale.icns
+}
+
 RESOURCES = cod_fisc.qrc \
             lang.qrc
 RC_FILE = winicon.rc

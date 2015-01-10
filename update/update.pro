@@ -34,5 +34,12 @@ RESOURCES += \
             update.qrc \
     lang.qrc
 
+unix{
+
+target.path = /opt/codicefiscale
+
+INSTALLS += target
+}
+
 TRANSLATIONS = language/English.ts \
                language/Italian.ts

@@ -257,7 +257,7 @@ void pref::up_dw(QString package, QString url){
 #elif defined(Q_OS_WIN)
     process->start("C:\\CodiceFiscale\\update -u "+url+" -p "+package);
 #elif defined(Q_OS_MACX)
-    process->start("./update.app/Contents/MacOS/update -u"+url+" -p"+package);
+    process->start("./update.app/Contents/MacOS/update -u "+url+" -p "+package);
 #elif defined(Q_OS_UNIX)
     process->start("./update -u "+url+" -p "+package);
 #endif

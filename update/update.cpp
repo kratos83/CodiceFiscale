@@ -10,7 +10,7 @@ update::update(QWidget *parent) :
 }
 
 update::update(QWidget *wig, QString url, QString agg):
-    QDialog(wig), downloadedCount(0), totalCount(0), sizepause(0)
+    QDialog(wig), downloadedCount(0), sizepause(0)
 {
     setupUi(this);
     setWindowTitle(tr("Gestore aggiornamento"));
@@ -196,7 +196,7 @@ void update::install_package(){
 #elif defined(Q_OS_UNIX)
    unix_start = new QProcess(this);
    connect(unix_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
-   unix_start->start("pkexec unzip -o "+file_dir+" -d /opt/codicefiscale/");
+   unix_start->start("sudo unzip -o "+file_dir+" -d /opt/codicefiscale/");
 #endif
 }
 

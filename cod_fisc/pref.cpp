@@ -279,7 +279,7 @@ void pref::combo_language()
 
     default_language = set_language();
     if(files.contains(default_language+".qm"))
-        default_language = "English";
+        default_language = "Italian";
 }
 
 QString pref::set_language()

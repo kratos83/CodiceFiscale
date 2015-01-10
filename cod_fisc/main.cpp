@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "2.0"){
-        settings->setGeneralValue("Version/version","2.1");
+        settings->setGeneralValue("Version/version","2.2");
     }
     else{
             settings->generalValue("Version/version",QVariant()).toString();

@@ -232,6 +232,7 @@ void pref::self_update_parse(QNetworkReply* reply){
                            //Open update
                            up_dw(QString::fromLatin1(filelist.data()->toStdString().c_str()),txtt);
                            box->close();
+			   exit(0);
                            break;
                          case QMessageBox::Cancel:
                             //Close

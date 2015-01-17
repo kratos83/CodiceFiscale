@@ -169,7 +169,7 @@ void pref::self_update(){
     QUrl url("http://www.codelinsoft.it/package/codicefiscale/codfisc-macx.xml");
     manager->get(QNetworkRequest(QUrl(url)));
     connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(self_update_parse(QNetworkReply*)));
-#elif defined(Q_OS_UNIX)
+#elif defined(Q_OS_FREEBSD)
     QUrl url("http://www.codelinsoft.it/package/codicefiscale/codfisc-unix.xml");
     manager->get(QNetworkRequest(QUrl(url)));
     connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(self_update_parse(QNetworkReply*)));
@@ -258,7 +258,7 @@ void pref::up_dw(QString package, QString url){
     process->start("C:\\CodiceFiscale\\update -u "+url+" -p "+package);
 #elif defined(Q_OS_MACX)
     process->start("./update.app/Contents/MacOS/update -u "+url+" -p "+package);
-#elif defined(Q_OS_UNIX)
+#elif defined(Q_OS_FREEBSD)
     process->start("./update -u "+url+" -p "+package);
 #endif
 }

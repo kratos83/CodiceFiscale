@@ -7717,6 +7717,7 @@ Vendrogno:L731:LC
 Venegono Inferiore:L733:VA
 Venegono Superiore:L734:VA
 Venetico:L735:ME
+Venezia:L736:VE
 Veniano:L736:VE
 Venosa:L737:CO
 Venticano:L738:PZ

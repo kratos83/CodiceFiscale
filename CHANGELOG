@@ -1,4 +1,9 @@
 /******************************************
+CodiceFiscale 2.2.1
+Fix update for linux and freebsd
+Fix check common for linux and freebsd
+
+/******************************************
 CodiceFiscale 2.2
 Fix update
 Fix version update

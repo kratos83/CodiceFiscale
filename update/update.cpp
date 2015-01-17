@@ -25,6 +25,15 @@ update::update(QWidget *wig, QString url, QString agg):
 
 void update::download(){
 
+    //Avvia processo di cambio permessi su linux e freebsd
+    QProcess *lin_start = new QProcess(this);
+#if defined (Q_OS_LINUX)
+    lin_start->start("pkexec chmod 777 /opt/codicefiscale");
+#elif defined(Q_OS_FREEBSD)
+    lin_start->start("sudo chmod 777 /opt/codicefiscale");
+#endif
+
+
     dw_ps->setEnabled(true);
     inst_agg->setEnabled(false);
     QUrl url(url_up+txts);
@@ -115,7 +124,7 @@ void update::downloadFinished(){
                 QString fileNames=direct->currentDirPath()+"/"+filename+".part";
 #elif defined(Q_OS_WIN)
                 QString fileNames=direct->currentDirPath()+"\\"+filename+".part";
-#elif defined(Q_OS_UNIX)
+#elif defined(Q_OS_FREEBSD)
                 QString fileNames=direct->currentDirPath()+"/"+filename+".part";
 #endif
                 if(currentDownload->error()){
@@ -137,17 +146,7 @@ void update::downloadFinished(){
 }
 
 void update::downloadReadyRead(){
-    output->write(currentDownload->readAll());
-    QUrl url(txts);
-    QString filename = QFileInfo(url.path()).fileName();
-
-    QDir *direct = new QDir( QCoreApplication::applicationDirPath() );
-    QStringList fileNames=direct->entryList( QStringList("*.zip"), QDir::Files, QDir::Name);
-    QProcess *lin_start = new QProcess(this);
-    fileNames << filename;
-#if defined (Q_OS_LINUX)
-    lin_start->start("chmod 777 "+filename);
-#endif
+    output->write(currentDownload->readAll());    
 }
 
 void update::pause(){
@@ -193,7 +192,7 @@ void update::install_package(){
     mac_start = new QProcess(this);
     connect(mac_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
     mac_start->start("unzip -o "+file_dir+" -d /Applications/CodiceFiscale/");
-#elif defined(Q_OS_UNIX)
+#elif defined(Q_OS_FREEBSD)
    unix_start = new QProcess(this);
    connect(unix_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
    unix_start->start("sudo unzip -o "+file_dir+" -d /opt/codicefiscale/");
@@ -208,7 +207,7 @@ void update::display_progress_bar()
     int val = win_start->readLine().toInt();
 #elif defined(Q_OS_MAC64)
     int val = mac_start->readLine().toInt();
-#elif defined(Q_OS_UNIX)
+#elif defined(Q_OS_FREEBSD)
     int val = unix_start->readLine().toInt();
 #endif
     for(val=0;val <= 100; val++){

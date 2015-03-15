@@ -47,17 +47,11 @@
  *
  * \param VERSION
  */
-#define VERSION 2.1
+#define VERSION 2.2.2
 
 #include <QtCore>
 
-/*!
- * Namespace versione, serve a visualizzare
- * la versione del software
- * \param namespace versione;
- */
-namespace versione
-{
+
     /*!
      * La funzione version_soft() serve a stampare
      * a video la versione del software.
@@ -65,12 +59,12 @@ namespace versione
      *\param double v_soft; ----------------------[<b>Il parametro v_soft imposta la versione del programma.</b>]
      *\return QString::number(v_soft);------------[<b>Ritorna il valore della versione nel formato decimale.</b>]
      */
-    QString version_soft(){
+    static QString version_soft(){
         double v_soft;
         v_soft = VERSION;
 
         return QString::number(v_soft);
     }
-}
+
 
 #endif // VERSIONE_H

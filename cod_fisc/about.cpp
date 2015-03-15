@@ -43,6 +43,7 @@
 #include "ui_about.h"
 #include "settingsmanager.h"
 #include <QDate>
+#include "versione.h"
 
 about::about(QWidget *parent) :
     QDialog(parent),
@@ -50,7 +51,7 @@ about::about(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("About");
-    ui->testo->setText(tr("CodiceFiscale ")+settingsManager->generalValue("Version/version").toString());
+    ui->testo->setText(tr("CodiceFiscale ")+version_soft());
     connect(ui->esci,SIGNAL(clicked()),this,SLOT(close()));
 }
 

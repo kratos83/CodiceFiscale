@@ -25,14 +25,14 @@ pref::pref(QWidget *parent) :
     connect(update_b,SIGNAL(clicked()),this,SLOT(self_update()));
     settings = new SettingsManager(this);
     menu_pref();
-    interface();
+    interfaccia();
     readsettings();
     visagg();
     combo_language();
 }
 
 
-void pref::interface(){
+void pref::interfaccia(){
     listWidget->setViewMode(QListView::IconMode);
     listWidget->setIconSize(QSize(84,84));
     listWidget->setMovement(QListView::Static);
@@ -50,12 +50,12 @@ void pref::readsettings(){
 
     //FONT APPLICATION
     QFont fnt;
-    fnt.fromString(settings->generalValue("Application/font","Verdana,-1,11,5,50,0,0,0,0,0").toString());
+    fnt.fromString(settings->generalValue("Application/font",QVariant()).toString());
     cmbFontName->setFont(fnt);
     spinFontSize->setValue(fnt.pixelSize());
 
     QFont appfnt;
-    appfnt.fromString(settings->generalValue("Application/font","Verdana,-1,11,5,50,0,0,0,0,0").toString());
+    appfnt.fromString(settings->generalValue("Application/applicationFont",QVariant()).toString());
     cmbApplicationFontName->setFont(appfnt);
     spinApplicationFontSize->setValue(appfnt.pixelSize());
 
@@ -255,7 +255,7 @@ void pref::up_dw(QString package, QString url){
 #if defined(Q_OS_LINUX)
     process->start("./update -u "+url+" -p "+package);
 #elif defined(Q_OS_WIN)
-    process->start("C:\\CodiceFiscale\\update -u "+url+" -p "+package);
+    process->start("C:\\CodiceFiscale\\update.exe -u "+url+" -p "+package);
 #elif defined(Q_OS_MACX)
     process->start("./update.app/Contents/MacOS/update -u "+url+" -p "+package);
 #elif defined(Q_OS_FREEBSD)

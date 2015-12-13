@@ -48,7 +48,7 @@
 
 #include "about.h"
 #include "print.h"
-#include <qglobal.h>
+#include "settingsmanager.h"
 
 #include <QFile>
 #include <QTextStream>
@@ -57,6 +57,7 @@
 #include <QCompleter>
 #include <QDebug>
 #include <QPrinter>
+#include <QtSql>
 #include <QPrintPreviewDialog>
 #include <QFileDialog>
 
@@ -67,7 +68,13 @@ cod_fisc::cod_fisc(QWidget *parent) :
     ui->setupUi(this);
 
     setAttribute(Qt::WA_DeleteOnClose);
+    setWindowTitle("CodiceFiscale "+settingsManager->generalValue("Version/version",QVariant()).toString());
     interfaccia_signal();
+
+    //Impostazione font
+    QFont appfnt;
+    appfnt.fromString(settingsManager->generalValue("Application/applicationFont",QVariant()).toString());
+    QApplication::setFont(appfnt);
 }
 
 /*
@@ -83,7 +90,6 @@ void cod_fisc::interfaccia_signal()
     connect(ui->actionEsporta_in_pdf,SIGNAL(triggered()),this,SLOT(exp_pdf()));
     connect(ui->actionEsporta_in_immagine,SIGNAL(triggered()),this,SLOT(exp_img()));
     connect(ui->comboBox_sel,SIGNAL(currentIndexChanged(int)),this,SLOT(sel_combo_box(int)));
-    connect(ui->comboBoxComune,SIGNAL(currentIndexChanged(int)),this,SLOT(calcola_provincia()));
     connect(ui->actionVerifica_partita_iva,SIGNAL(triggered()),this,SLOT(verifica_partita_iva()));
     connect(ui->actionVerifica_codice_fiscale,SIGNAL(triggered()),this,SLOT(verifica_codice_fiscale()));
     connect(ui->actionCerca_CAP_Codici_avviamenti_postali,SIGNAL(triggered()),this,SLOT(cerca_cap()));
@@ -136,26 +142,20 @@ void cod_fisc::sel_combo_box(int index)
  */
 void cod_fisc::initStati(){
 
-    QFile file(":/stati.txt");
+    QSqlQuery query;
+    query.prepare("select * from stati");
 
-            if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-                    return;
-
-            QTextStream in(&file);
-            QStringList list;
-            QString com;
-            for (int i = 0; i < 8098; i++)
-            {
-                    QString line = in.readLine();
-                    com  = line.section(':', 0, 0);
-                    ui->comboBoxComune->addItem(com);
-                    list << com;
-            }
-
-            QCompleter *complete = new QCompleter(list,this);
-            complete->setCaseSensitivity(Qt::CaseInsensitive);
-            ui->comboBoxComune->setCompleter(complete);
-
+    QStringList list;
+    if(query.exec())
+    {
+        while(query.next()){
+            list << query.value(0).toString();
+        }
+        ui->comboBoxComune->addItems(list);
+    }
+    QCompleter *complete = new QCompleter(list,this);
+    complete->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->comboBoxComune->setCompleter(complete);
 }
 
 /*
@@ -163,27 +163,20 @@ void cod_fisc::initStati(){
  * All'interno troviamo i comuni italiani ma acnhe quelli esteri.
  */
 void cod_fisc::initComuni(){
+    QSqlQuery query;
+    query.prepare("select * from paesi");
 
-    QFile file(":/comuni.txt");
-
-            if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-                    return;
-
-            QTextStream in(&file);
-            QStringList list;
-            QString com;
-            for (int i = 0; i < 8297; i++)
-            {
-                    QString line = in.readLine();
-                    com  = line.section(':', 0, 0);
-                    ui->comboBoxComune->addItem(com);
-                    list << com;
-            }
-
-            QCompleter *complete = new QCompleter(list,this);
-            complete->setCaseSensitivity(Qt::CaseInsensitive);
-            ui->comboBoxComune->setCompleter(complete);
-
+    QStringList list;
+    if(query.exec())
+    {
+        while(query.next()){
+            list << query.value(0).toString();
+        }
+        ui->comboBoxComune->addItems(list);
+    }
+    QCompleter *complete = new QCompleter(list,this);
+    complete->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->comboBoxComune->setCompleter(complete);
 }
 
 /*
@@ -461,21 +454,17 @@ void cod_fisc::calculateData(){
  */
 void cod_fisc::calculateComune(){
 
-    int currentIndex = ui->comboBoxComune->currentIndex();
+    QSqlQuery query;
+    query.prepare("select * from paesi where paese='"+ui->comboBoxComune->currentText()+"'");
 
-    QFile file(":/comuni.txt");
-
-            if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-                    return;
-
-            QTextStream in(&file);
-
-            for (int i = 0; i < currentIndex; i++)
-                    in.readLine();
-
-            QString line = in.readLine();
-            QString cod = line.section(':', 1, 1);
-            block4 = cod.left(4);
+    QStringList list;
+    if(query.exec())
+    {
+        while(query.next()){
+            list << query.value(1).toString();
+        }
+        block4 = list.at(0).left(4);
+    }
 }
 
 /*
@@ -484,21 +473,17 @@ void cod_fisc::calculateComune(){
 
 void cod_fisc::calcola_provincia()
 {
-    int currentIndex = ui->comboBoxComune->currentIndex();
+    QSqlQuery query;
+    query.prepare("select * from paesi where paese='"+ui->comboBoxComune->currentText()+"'");
 
-    QFile file(":/comuni.txt");
-
-            if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-                    return;
-
-            QTextStream in(&file);
-
-            for (int i = 0; i < currentIndex; i++)
-                    in.readLine();
-
-            QString line = in.readLine();
-            QString cod = line.section(':', 2, 2);
-            prov = cod;
+    QStringList list;
+    if(query.exec())
+    {
+        while(query.next()){
+            list << query.value(2).toString();
+        }
+        prov = list.at(0);
+    }
 }
 
 /*
@@ -507,21 +492,17 @@ void cod_fisc::calcola_provincia()
 
 void cod_fisc::calcola_pr_st()
 {
-    int currentIndex = ui->comboBoxComune->currentIndex();
+    QSqlQuery query;
+    query.prepare("select * from stati where stato='"+ui->comboBoxComune->currentText()+"'");
 
-    QFile file(":/stati.txt");
-
-            if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-                    return;
-
-            QTextStream in(&file);
-
-            for (int i = 0; i < currentIndex; i++)
-                    in.readLine();
-
-            QString line = in.readLine();
-            QString cod = line.section(':', 2, 2);
-            pr_st = cod;
+    QStringList list;
+    if(query.exec())
+    {
+        while(query.next()){
+            list << query.value(2).toString();
+        }
+        pr_st = list.at(0);
+    }
 }
 
 /*
@@ -530,21 +511,17 @@ void cod_fisc::calcola_pr_st()
  */
 void cod_fisc::calculateStato(){
 
-    int currentIndex = ui->comboBoxComune->currentIndex();
+    QSqlQuery query;
+    query.prepare("select * from stati where stato='"+ui->comboBoxComune->currentText()+"'");
 
-    QFile file(":/stati.txt");
-
-            if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-                    return;
-
-            QTextStream in(&file);
-
-            for (int i = 0; i < currentIndex; i++)
-                    in.readLine();
-
-            QString line = in.readLine();
-            QString cod = line.section(':', 1, 1);
-            block4 = cod.left(4);
+    QStringList list;
+    if(query.exec())
+    {
+        while(query.next()){
+            list << query.value(1).toString();
+        }
+        block4 = list.at(0).left(4);
+    }
 }
 
 /*
@@ -835,13 +812,11 @@ bool cod_fisc::vis_cod_fisc(bool click)
     if(click == true)
     {
         ui->groupBox_2->setVisible(true);
-        ui->image_cod_fisc->setVisible(true);
         setFixedSize(856,454);
     }
     else if(click == false)
        {
         ui->groupBox_2->setVisible(false);
-        ui->image_cod_fisc->setVisible(false);
         setFixedSize(427,454);
        }
 
@@ -897,6 +872,7 @@ void cod_fisc::disegna(QPainter *painter)
 /*
  * Aggiorna i dati indolore nella schermata
  * della tessera sanitaria
+ * FIXME high cpu
  */
 void cod_fisc::aggiorna()
 {

@@ -52,6 +52,8 @@ about::about(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("About");
     ui->testo->setText(tr("CodiceFiscale ")+version_soft());
+    ui->label_3->setAlignment(Qt::AlignCenter);
+    ui->label_3->setText(QString::fromUtf8("\nIl software è stato compilato con le Qt versione: ")+QString(QT_VERSION_STR));
     connect(ui->esci,SIGNAL(clicked()),this,SLOT(close()));
 }
 

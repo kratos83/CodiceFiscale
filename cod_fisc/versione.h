@@ -47,7 +47,7 @@
  *
  * \param VERSION
  */
-#define VERSION 2.2.2
+#define VERSION "3.0"
 
 #include <QtCore>
 
@@ -60,10 +60,8 @@
      *\return QString::number(v_soft);------------[<b>Ritorna il valore della versione nel formato decimale.</b>]
      */
     static QString version_soft(){
-        double v_soft;
-        v_soft = VERSION;
 
-        return QString::number(v_soft);
+        return VERSION;
     }
 
 

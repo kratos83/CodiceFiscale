@@ -41,6 +41,8 @@
 
 
 #include <QApplication>
+#include <QtSql>
+#include <QDebug>
 #include "cod_fisc.h"
 #include "settingsmanager.h"
 
@@ -50,8 +52,8 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "2.2"){
-        settings->setGeneralValue("Version/version","2.2.1");
+    if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "2.2.1"){
+        settings->setGeneralValue("Version/version","3.0");
     }
     else{
             settings->generalValue("Version/version",QVariant()).toString();
@@ -63,6 +65,10 @@ int main(int argc, char *argv[])
     QTranslator translator;
     translator.load(":/language/language/"+settings->generalValue("Language/language",QVariant()).toString()+".qm");
     a.installTranslator(&translator);
+
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("codicefiscale.db");
+    db.open();
 
     cod_fisc *codice = new cod_fisc;
     codice->show();

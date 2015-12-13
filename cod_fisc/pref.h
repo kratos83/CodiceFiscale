@@ -266,13 +266,13 @@ public slots:
     void menu_pref();
 
     /*!
-     * La funzione interface() visualizza una
+     * La funzione interfaccia() visualizza una
      * QListWidget all'interno della finestra di dialogo.
      *
      *
-     * \brief <b>void interface()</b>
+     * \brief <b>void interfaccia()</b>
      */
-    void interface();
+    void interfaccia();
    
     /*!
      * La funzione applica() serve ad impostare i paramentri

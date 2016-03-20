@@ -163,6 +163,10 @@ IF(WIN32)
 		"${MINGW_PREFIX}/lib/qt5/plugins/platforms/qwindows.dll"
 		DESTINATION ./platforms
 		)
+	INSTALL(FILES 
+		"${MINGW_PREFIX}/lib/qt5/plugins/printsupport/windowsprintersupport.dll" 
+		DESTINATION ./printsupport
+		)
 	INSTALL(FILES
 		"../windows/gunzip.exe"
 		"../windows/gzip.exe"

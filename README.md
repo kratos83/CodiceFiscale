@@ -2,7 +2,7 @@ CodiceFiscale 4.0
 =========
 
 Calcolo del codice fiscale
-Author 2014 Codelinsoft <info@codelinsoft.it>
+Author 2011-2016 Codelinsoft <info@codelinsoft.it>
 
 Per poter installare CodiceFiscale da sorgente bisogna 
 scaricare il programma all'indirizzo:
@@ -19,6 +19,9 @@ cmake -DCMAKE_INSTALL_PREFIX=directory
 
 make-j5
 sudo make install
+
+------------------------------------------------------------------------
+![ScreenShot](https://github.com/kratos83/CodiceFiscale/blob/master/codicefiscale.png)
 
 ------------------------------------------------------------------------
 CodiceFiscale calcola anche quello estero.

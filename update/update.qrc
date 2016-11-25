@@ -5,5 +5,6 @@
         <file>images/start.png</file>
         <file>images/upgrade.png</file>
         <file>images/codice_fiscale_logo.png</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>

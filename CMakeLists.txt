@@ -15,7 +15,7 @@ INCLUDE(CheckIncludeFiles)
 INCLUDE(CheckFunctionExists)
 INCLUDE(FindPkgConfig)
 
-SET(VERSION_MAJOR "3")
+SET(VERSION_MAJOR "4")
 SET(VERSION_MINOR "0")
 
 #SET(VERSION_SUFFIX "")
@@ -26,44 +26,19 @@ ENDIF(VERSION_SUFFIX)
 
 INCLUDE(DetectMachine)
 
-#Abilito la compilazione con le qt5
-OPTION(WANT_QT5		"Build with Qt5" OFF)
-OPTION(WANT_QT4		"Build with Qt4" OFF)
-
 
 LIST(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
-if(WANT_QT5)
-	set(QT5 TRUE)
-	
-	FIND_PACKAGE(Qt5Widgets REQUIRED)
-	FIND_PACKAGE(Qt5Gui REQUIRED)
-	FIND_PACKAGE(Qt5Core REQUIRED)
-	FIND_PACKAGE(Qt5Xml REQUIRED)
-	FIND_PACKAGE(Qt5Network REQUIRED)
-	FIND_PACKAGE(Qt5Sql REQUIRED)
-	FIND_PACKAGE(Qt5Svg REQUIRED)
-else()
-	
-	SET(QT5 FALSE)
-	
-	# check for Qt4
-	FIND_PACKAGE(Qt4 COMPONENTS QtCore QtGui QtXml QtNetwork QtSql QtSvg Qt3Support REQUIRED)
-
-	SET(QT_USE_QTXML 1)
-	IF(WIN32)
-		SET(QT_TRANSLATIONS_DIR "${MINGW_PREFIX}/share/qt4/translations/")
-	ENDIF(WIN32)
-
-	IF(EXISTS "${QT_TRANSLATIONS_DIR}")
-		MESSAGE("-- Found Qt translations in ${QT_TRANSLATIONS_DIR}")
-		ADD_DEFINITIONS(-D'QT_TRANSLATIONS_DIR="${QT_TRANSLATIONS_DIR}"')
-	ENDIF()
-	IF(NOT WIN32)
-		STRING(REPLACE "-DQT_DLL" "" QT_DEFINITIONS "${QT_DEFINITIONS}")
-	ENDIF()
-	INCLUDE("${QT_USE_FILE}")
-endif()
+find_package(Qt5Core  REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Gui   REQUIRED)
+find_package(Qt5Xml REQUIRED)
+find_package(Qt5Network REQUIRED)
+find_package(Qt5Sql REQUIRED)
+find_package(Qt5Svg REQUIRED)
+find_package(Qt5Qml   REQUIRED)
+find_package(Qt5Quick REQUIRED)
+find_package(Qt5PrintSupport REQUIRED)
 
 # set compiler flags
 SET(WERROR_FLAGS "-Wall -Werror=unused-function -Wno-sign-compare -Wno-strict-overflow")
@@ -110,6 +85,8 @@ ELSE(WIN32)
 ENDIF(WIN32)
 
 # make sub-directories
+ADD_SUBDIRECTORY(sql)
+ADD_SUBDIRECTORY(utils)
 ADD_SUBDIRECTORY(cod_fisc)
 ADD_SUBDIRECTORY(update)
 

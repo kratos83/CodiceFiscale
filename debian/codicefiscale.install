@@ -1,4 +1,5 @@
 cod_fisc/codicefiscale /opt/codicefiscale
+cod_fisc/Codelinsoft  /opt/codicefiscale/Codelinsoft
 cod_fisc/images/codicefisc.png /opt/codicefiscale
 cod_fisc/update	/opt/codicefiscale
 cod_fisc/codicefiscale.db /opt/codicefiscale

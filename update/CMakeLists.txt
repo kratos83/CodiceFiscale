@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.6)
+project(update)
+cmake_minimum_required(VERSION 2.8)
 
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/../cmake/modules )
 
@@ -8,18 +9,15 @@ ELSE()
 SET( CMAKE_CXX_FLAGS  "-std=c++11" )
 ENDIF()
 
-if(QT5)
-FIND_PACKAGE(Qt5Widgets REQUIRED)
-FIND_PACKAGE(Qt5Gui REQUIRED)
-FIND_PACKAGE(Qt5Core REQUIRED)
-FIND_PACKAGE(Qt5Xml REQUIRED)
-FIND_PACKAGE(Qt5Network REQUIRED)
-FIND_PACKAGE(Qt5Sql REQUIRED)
-FIND_PACKAGE(Qt5Svg REQUIRED)
-else()
-FIND_PACKAGE(Qt4 COMPONENTS QtCore QtGui QtXml QtNetwork QtSql QtSvg Qt3Support REQUIRED)
-include(${QT_USE_FILE})
-endif()
+find_package(Qt5Core  REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Gui   REQUIRED)
+find_package(Qt5Xml REQUIRED)
+find_package(Qt5Network REQUIRED)
+find_package(Qt5Sql REQUIRED)
+find_package(Qt5Svg REQUIRED)
+find_package(Qt5Qml   REQUIRED)
+find_package(Qt5Quick REQUIRED)
 
 set(update "update")
 
@@ -34,21 +32,7 @@ set(update_moc_hdrs
         settingsmanager.h
 )
 
-if(QT5)
 qt5_wrap_cpp(update_mocs ${update_moc_hdrs})
-else()
-qt4_wrap_cpp(update_mocs ${update_moc_hdrs})
-endif()
-
-set(update_uis 
-	update.ui
-)
-
-if(QT5)
-qt5_wrap_ui(update_ui_hdrs ${update_uis})
-else()
-qt4_wrap_ui(update_ui_hdrs ${update_uis})
-endif()
 
 set(update_srcs 
 	main.cpp
@@ -56,11 +40,7 @@ set(update_srcs
         settingsmanager.cpp
 )
 
-if(QT5)
 qt5_add_resources(RESOURCE_FILES update.qrc lang.qrc) 
-else()
-qt4_add_resources(RESOURCE_FILES update.qrc lang.qrc) 
-endif()
 
 IF(WIN32)
     LINK_LIBRARIES(-lws2_32 -lwtsapi32 -lnetapi32 -luserenv -ladvapi32 ${QT_LIBRARIES})
@@ -87,23 +67,18 @@ LINK_LIBRARIES(-lpthread)
 if(APPLE)
 set(SOURCE_FILES ${SOURCE_FILES} images/upgrade.icns)
 set_source_files_properties(images/upgrade.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-ADD_EXECUTABLE(update MACOSX_BUNDLE ${update_srcs} ${update_mocs} ${update_uis} ${RESOURCE_FILES} ${WINRC})
+ADD_EXECUTABLE(update MACOSX_BUNDLE ${update_srcs} ${update_mocs} ${RESOURCE_FILES} ${WINRC})
 ELSE()
-ADD_EXECUTABLE(update ${update_srcs} ${update_mocs} ${update_uis} ${RESOURCE_FILES} ${WINRC})
+ADD_EXECUTABLE(update ${update_srcs} ${update_mocs} ${RESOURCE_FILES} ${WINRC})
 ENDIF()
 
-if(QT5)
 target_link_libraries( update
   Qt5::Widgets Qt5::Xml
   Qt5::Network Qt5::Gui 
   Qt5::Sql Qt5::Core 
-  Qt5::Svg
+  Qt5::Svg Qt5::Qml 
+  Qt5::Quick 
 )
-else()
-target_link_libraries( update
-  ${QT_LIBRARIES}
-)
-endif()
 
 IF(WIN32)
     INSTALL( TARGETS update RUNTIME DESTINATION .)

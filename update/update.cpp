@@ -1,26 +1,21 @@
 #include "update.h"
-#include "ui_update.h"
 #include <QtNetwork/QNetworkRequest>
 #include <QDir>
+#include <QQmlComponent>
 #include <QStringList>
 
-update::update(QWidget *parent) :
-    QDialog(parent)
+update::update(QQuickItem *parent) :
+    QObject(parent)
 {
+    manager = new QNetworkAccessManager(this);
 }
 
-update::update(QWidget *wig, QString url, QString agg):
-    QDialog(wig), downloadedCount(0), sizepause(0)
+update::update(QQuickItem *wig, QString url, QString agg):
+    QObject(wig), downloadedCount(0), sizepause(0)
 {
-    setupUi(this);
-    setWindowTitle(tr("Gestore aggiornamento"));
     manager = new QNetworkAccessManager(this);
-    connect(down_agg,SIGNAL(clicked()),this,SLOT(download()));
-    connect(dw_ps,SIGNAL(clicked()),this,SLOT(pause()));
-    connect(inst_agg,SIGNAL(clicked()),this,SLOT(install_package()));
-    url_up = url;
-    txts = agg;
-    dw_ps->setEnabled(false);
+    setTestoUrl(url);
+    setTestoPkg(agg);
 }
 
 void update::download(){
@@ -33,10 +28,7 @@ void update::download(){
     lin_start->start("sudo chmod 777 /opt/codicefiscale");
 #endif
 
-
-    dw_ps->setEnabled(true);
-    inst_agg->setEnabled(false);
-    QUrl url(url_up+txts);
+    QUrl url(testoUrl()+testoPkg());
     QString filename = QFileInfo(url.path()).fileName();
     sizepause =0;
     mCurrentRequest = QNetworkRequest(url);
@@ -44,7 +36,8 @@ void update::download(){
     output->open(QIODevice::ReadWrite);
     QString dw = tr("Scaricamento in corso di:  ");
     QString w = filename;
-    textEdit->setText(dw+" "+w);
+    QString files_down = dw+" "+w;
+    setFileDown(files_down);
     startNextDownload(mCurrentRequest);
     riavvio = true;
     stop = false;
@@ -64,17 +57,15 @@ void update::startNextDownload(QNetworkRequest& request){
         connect(currentDownload, SIGNAL(downloadProgress(qint64,qint64)),SLOT(downloadProgress(qint64,qint64)));
         connect(currentDownload, SIGNAL(error(QNetworkReply::NetworkError)),this,SLOT(error(QNetworkReply::NetworkError)));
 
-
         // prepare the output
-
         downloadTime.start();
 }
 
 void update::downloadProgress(qint64 bytesReceived, qint64 bytesTotal){
 
-        progressBar->setMaximum(bytesTotal);
-        progressBar->setValue(bytesReceived);
-
+        setByteRicevuti(bytesReceived);
+        setByteTotali(bytesTotal);
+        
         // calcolo la velocità di download
         double speed = bytesReceived * 1000.0 / downloadTime.elapsed();
         QString unit;
@@ -109,13 +100,12 @@ void update::downloadProgress(qint64 bytesReceived, qint64 bytesTotal){
 
         QString ts = QString::fromLatin1("%1 %2").arg(speed, 3, 'f', 1).arg(unit);
         QString ts1 = QString::fromLatin1("%1 %2").arg(peso,3,'f',1).arg(dt);
-        test_agg->setText(QString::fromUtf8(tr("Velocità di scaricamento: ").toStdString().c_str())+ts+tr("  Dimensione: ")+ts1+tr(" Tempo stimato: ")+QString("%1:%2:%3").arg(hours,2,10, QLatin1Char('0')).arg(mins,2,10, QLatin1Char('0')).arg(secs,2,10, QLatin1Char('0')));
-        progressBar->update();
+        setSpeedDown(QString::fromUtf8(tr("Velocità di scaricamento: ").toStdString().c_str())+ts+tr("  Dimensione: ")+ts1+tr(" Tempo stimato: ")+QString("%1:%2:%3").arg(hours,2,10, QLatin1Char('0')).arg(mins,2,10, QLatin1Char('0')).arg(secs,2,10, QLatin1Char('0')));
 }
 
 void update::downloadFinished(){
                 output->close();
-                QUrl url(txts);
+                QUrl url(testoUrl()+testoPkg());
                 QString filename = QFileInfo(url.path()).fileName();
                 QDir *direct = new QDir( QCoreApplication::applicationDirPath() );
 #if defined(Q_OS_LINUX)
@@ -129,18 +119,17 @@ void update::downloadFinished(){
 #endif
                 if(currentDownload->error()){
                     QString ts = tr("Download fallito: ")+currentDownload->errorString();
-                    textEdit->setText(ts);
+                    setFileDown(ts);
                     output->remove(fileNames);
                 }
                 else{
-                output->rename(fileNames,filename);
-                downloadReadyRead();
-                inst_agg->setEnabled(true);
-                ++downloadedCount;
-                QString txs = tr("Scaricamento completato");
-                textEdit->setText(txs);
-                emit finished();
-                install_package();
+                    output->rename(fileNames,filename);
+                    downloadReadyRead();
+                    ++downloadedCount;
+                    QString txs = tr("Scaricamento completato");
+                    setFileDown(txs);
+                    emit finished();
+                    install_package();
                 }
 
 }
@@ -153,27 +142,22 @@ void update::pause(){
 
 
     QString p_s = tr("Scaricamento annullato");
-    textEdit->setText(p_s);
+    setFileDown(p_s);
 
     if( currentDownload == 0 ) {
-        textEdit->setText(tr("Errore scaricamento"));
+        setFileDown(tr("Errore scaricamento"));
     }
 
     disconnect(currentDownload,SIGNAL(downloadProgress(qint64,qint64)),this,SLOT(downloadProgress(qint64,qint64)));
     disconnect(currentDownload,SIGNAL(finished()),this,SLOT(downloadFinished()));
 
-    dw_ps->setEnabled(false);
-    inst_agg->setEnabled(false);
     currentDownload->abort();
     output->remove();
-    progressBar->setValue(0);
-    progressBar->update();
-    test_agg->clear();
 }
 
 void update::install_package(){
 
-   QUrl url(txts);
+   QUrl url(testoUrl()+testoPkg());
    QString filename = QFileInfo(url.path()).fileName();
 
    QDir *direct = new QDir( QCoreApplication::applicationDirPath() );
@@ -211,27 +195,91 @@ void update::display_progress_bar()
     int val = unix_start->readLine().toInt();
 #endif
     for(val=0;val <= 100; val++){
-        unzip_file->setValue(val);
+        setInstallPackage(val);
     }
-    unzip_file->setValue(100);
 }
 
 void update::error(QNetworkReply::NetworkError code){
-    textEdit->setText(tr("Download fallito "));
+    setFileDown(tr("Download fallito "));
+}
+
+QString update::testoPkg() const
+{
+    return m_txts;
+}
+
+void update::setTestoPkg(const QString& pkg)
+{
+    m_txts = pkg;
+    emit changeText();
+}
+
+void update::setTestoUrl(const QString& url)
+{
+    m_url_p = url;
+    emit changeText();
+}
+
+QString update::testoUrl() const
+{
+    return m_url_p;
+}
+
+QString update::fileDown()
+{
+    return f_down;
+}
+
+double update::getByteRicevuti()
+{
+    return byte_ricevuti;
+}
+
+double update::getByteTotali()
+{
+    return byte_totali;
+}
+
+void update::setByteRicevuti(quint64 br)
+{
+    byte_ricevuti = br;
+    emit changeText();
+}
+
+void update::setByteTotali(quint64 bt)
+{
+    byte_totali = bt;
+    emit changeText();
+}
+
+void update::setFileDown(QString name)
+{
+    f_down = name;
+    emit changeText();
+}
+
+void update::setSpeedDown(QString speed)
+{
+    vel = speed;
+    emit changeText();
+}
+
+QString update::speedDown()
+{
+    return vel;
+}
+
+double update::getInstallPackage()
+{
+    return byte_pack;
+}
+
+void update::setInstallPackage(double values)
+{
+    byte_pack = values;
+    emit changeText();
 }
 
 update::~update()
 {
-}
-
-void update::changeEvent(QEvent *e)
-{
-    QDialog::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        retranslateUi(this);
-        break;
-    default:
-        break;
-    }
 }

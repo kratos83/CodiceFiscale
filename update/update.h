@@ -41,7 +41,7 @@
 #ifndef UPDATE_H
 #define UPDATE_H
 
-#include <QDialog>
+#include <QtQuick>
 #include <QtGui>
 #include <QFile>
 #include <QObject>
@@ -50,15 +50,9 @@
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
-#include "ui_update.h"
-
-/*!
- * \brief namespace Ui{}
- * \param class update;
- */
-namespace Ui {
-class update;
-}
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQmlEngine>
 
 /*!
  * La classe update è una finestra di dialogo
@@ -70,35 +64,43 @@ class update;
  * dell'interfaccia.
  *
  *
- * \brief <b>class update : public QDialog, public Ui::update</b>
- * \param QDialog, Ui::update
+ * \brief <b>class update : public QObject</b>
+ * \param QObject
  */
-class update: public QDialog, public Ui::update
+class update: public QObject
 {
         Q_OBJECT
+        Q_PROPERTY(QString testoPkg READ testoPkg WRITE setTestoPkg)
+        Q_PROPERTY(QString testoUrl READ testoUrl WRITE setTestoUrl)
+        Q_PROPERTY(QString fileDown READ fileDown WRITE setFileDown NOTIFY changeText)
+        Q_PROPERTY(QString speedDown READ speedDown WRITE setSpeedDown NOTIFY changeText)
+        Q_PROPERTY(double getByteRicevuti READ getByteRicevuti WRITE setByteRicevuti NOTIFY changeText)
+        Q_PROPERTY(double getByteTotali READ getByteTotali WRITE setByteTotali NOTIFY changeText)
+        Q_PROPERTY(double getInstallPackage READ getInstallPackage WRITE setInstallPackage NOTIFY changeText)
+        
 public:
     /*!
-     * Costruttore <b>explicit update(QWidget *parent = 0);</b>
+     * Costruttore <b>explicit update(QQuickItem *parent = 0);</b>
      *
      * Questa classe visualizza una finestra di dialogo
      * con la fase di aggiornamento.
      *
-     * \brief <b>explicit update(QWidget *parent = 0);</b>
+     * \brief <b>explicit update(QQuickItem *parent = 0);</b>
      * \param parent = 0
      */
-    explicit update(QWidget *parent = 0);
+    explicit update(QQuickItem *parent = 0);
    
     /*!
      * Il costruttore update(QWidget *wig,QString url, QString agg)
      * serve ad avviare la finestra di dialogo con il relativo
      * indirizzo di download e il file da scaricare.
      *
-     * \brief <b>update(QWidget *wig,QString url, QString agg);</b>
+     * \brief <b>update(QQuickItem *wig,QString url, QString agg);</b>
      * \param QWidget *wig;---------[<b>Il parametro wig serve a visualizzare l'oggetto upgrade in fase di aggiornamento</b>]
      * \param QString url;----------[<b>Il parametro url serve a visualizzare l'indirizzo web da dove viene effettuato il download</b>]
      * \param QString agg;----------[<b>Il parametro agg serve a visualizzare il nome del file da scaricare</b>]
      */
-    update(QWidget *wig,QString url, QString agg);
+    update(QQuickItem *wig,QString url, QString agg);
 
     //!Distruttore ~update();
     /*!
@@ -114,7 +116,9 @@ public:
      *
      * \brief <b>QString txts;</b>
      */
-    QString txts;
+    QString txts, m_txts;
+    QString testoPkg() const;
+    void setTestoPkg(const QString &pkg);
 
     /*!
      * La stringa url_up serve a immagazzinare il nome
@@ -123,7 +127,23 @@ public:
      *
      * \brief <b>QString url_up;</b>
      */
-    QString url_up;
+    QString url_up, m_url_p;
+    QString testoUrl() const;
+    void setTestoUrl(const QString &url);
+    
+    double byte_ricevuti,byte_totali,byte_pack;
+    QString f_down,vel;
+    Q_INVOKABLE double getByteRicevuti();
+    Q_INVOKABLE double getByteTotali();
+    Q_INVOKABLE QString fileDown();
+    Q_INVOKABLE QString speedDown();
+    Q_INVOKABLE double getInstallPackage();
+    void setByteRicevuti(quint64 br);
+    void setByteTotali(quint64 bt);
+    void setFileDown(QString name);
+    void setSpeedDown(QString speed);
+    void setInstallPackage(double values);
+    
 private:
  
 
@@ -251,7 +271,7 @@ public slots:
      * \param QString av_dw;---------[<b>Ritorna il nome del file scaricato.</b>]
      * \return <b>av_dw</b>
      */
-    QString download(QString av_dw);
+    Q_INVOKABLE QString download(QString av_dw);
 
      /*!
      * La funzione startNextDownload(QNetworkRequest& request) serve
@@ -266,7 +286,7 @@ public slots:
      * \brief <b>void startNextDownload(QNetworkRequest& request);</b>
      * \param QNetworkRequest& request;-------------[<b>Il parametro request acquisisce il dato da scaricare lanciando il download.</b>]
      */
-    void startNextDownload(QNetworkRequest& request);
+    Q_INVOKABLE void startNextDownload(QNetworkRequest& request);
 
     /*!
      * La funzione downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
@@ -278,7 +298,7 @@ public slots:
      * \param qint64 bytesReceived;-----------[<b>Il parametro bytesReceived serve a leggere i byte ricevuti.</b>]
      * \param qint64 bytesTotal;--------------[<b>Il parametro bytesTotal serve a scrivere il totale dei byte scaricati.</b>]
      */
-    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    Q_INVOKABLE void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
     /*!
      * La funzione error(QNetworkReply::NetworkError code)
@@ -289,7 +309,7 @@ public slots:
      * \brief <b>void error(QNetworkReply::NetworkError code);</b>
      * \param QNetworkReply::NetworkError code;-----------[<b>Il parametro code visualizza un'eventuale errore durante lo scaricamento.</b>
      */
-    void error(QNetworkReply::NetworkError code);
+    Q_INVOKABLE void error(QNetworkReply::NetworkError code);
 
     /*!
      * La funzione downloadFinished() serve a chiudere
@@ -299,7 +319,7 @@ public slots:
      *
      * \brief <b>void downloadFinished();</b>
      */
-    void downloadFinished();
+    Q_INVOKABLE void downloadFinished();
 
     /*!
      * La funzione downloadReadyRead() serve a leggere
@@ -309,7 +329,7 @@ public slots:
      *
      * \brief <b>void downloadReadyRead();</b>
      */
-    void downloadReadyRead();
+    Q_INVOKABLE void downloadReadyRead();
 
     /*!
      * La funzione pause() serve a mettere il download
@@ -319,7 +339,7 @@ public slots:
      *
      * \brief <b>void pause();</b>
      */
-    void pause();
+    Q_INVOKABLE void pause();
 
     /*!
      * La funzione install_package() serve a installare
@@ -329,7 +349,7 @@ public slots:
      *
      * \brief <b>void install_package();</b>
      */
-    void install_package();
+    Q_INVOKABLE void install_package();
 
     /*!
      * La funzione download() serve a lanciare il
@@ -337,7 +357,7 @@ public slots:
      *
      * \brief <b>void download();</b>
      */
-    void download();
+    Q_INVOKABLE void download();
 
     /*!
      * La funzione display_progress_bar() serve a 
@@ -346,18 +366,7 @@ public slots:
      *
      * \brief <b>void display_progress_bar();</b>
      */
-    void display_progress_bar();
-
-protected:
-
-    /*!
-     * Funzione per cambiare la
-     * traduzione della lingua.
-     *
-     * \brief <b>void changeEvent(QEvent *e);</b>
-     * \param QEvent *e;
-     */
-    void changeEvent(QEvent *e);
+    Q_INVOKABLE void display_progress_bar();
 
 
 signals:
@@ -370,6 +379,6 @@ signals:
      * \brief <b>void finished()</b>
      */
     void finished();
+    void changeText();
 };
-
 #endif // UPDATE_H

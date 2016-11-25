@@ -1,4 +1,11 @@
-#include <QApplication>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQuickView>
+#include <QtQml>
+#include <QQuickWindow>
+#include <QtQuick>
+#include <QDebug>
 #include <QStringList>
 #include <QtGui>
 #include <QTranslator>
@@ -46,16 +53,21 @@ static bool parseArguments(const QStringList &argomento)
 
 int main(int argc, char **argv)
 {
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     SettingsManager *manager = new SettingsManager;
+    QQmlEngine engine;
 
+    
+    qmlRegisterType<update>("Codelinsoft", 1, 0, "Update");
     /*
      * Translate QDialog
      */
     QTranslator translator;
-    translator.load(":/language/"+manager->generalValue("Language/language",QVariant()).toString()+".qm");
+    if(manager->generalValue("Language/language",QVariant()).toInt() == 0)
+        translator.load(":/language/language/Italian.qm");
+    else if(manager->generalValue("Language/language",QVariant()).toInt() == 1)
+        translator.load(":/language/language/English.qm");
     app.installTranslator(&translator);
-
 
     if(!parseArguments(app.arguments()))
     {
@@ -67,9 +79,10 @@ int main(int argc, char **argv)
     const QString arg3 = argv[3];
 
     if((arg1.toLower() == "-u" || arg1.toLower() == "--url") && (arg3.toLower() == "-p" || arg3.toLower() == "--package")){
-        QWidget *wid= new QWidget;
-        update *manager = new update(wid,argv[2],argv[4]);
-        manager->show();
+        QQmlComponent component(&engine,QUrl("qrc:/main.qml"));
+        QObject *object = component.create();
+        object->setProperty("testoUrl",QVariant(argv[2]));
+        object->setProperty("testoPkg",QVariant(argv[4]));
     }
     else
     {

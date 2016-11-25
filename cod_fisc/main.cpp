@@ -39,40 +39,49 @@
 **
 ****************************************************************************/
 
-
+#include <QtCore>
 #include <QApplication>
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQuickView>
+#include <QtQml>
+#include <QQuickWindow>
 #include <QtSql>
 #include <QDebug>
-#include "cod_fisc.h"
+#include <time.h>
+#include <QLoggingCategory>
 #include "settingsmanager.h"
+
+Q_DECLARE_LOGGING_CATEGORY(CodiceFiscale)
+Q_LOGGING_CATEGORY(CodiceFiscale, "codicefiscale")
 
 int main(int argc, char *argv[])
 {
     SettingsManager *settings = new SettingsManager();
 
     QApplication a(argc, argv);
-
-    if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "2.2.1"){
-        settings->setGeneralValue("Version/version","3.0");
+    QQmlApplicationEngine engine;
+       
+    if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "3.0"){
+        settings->setGeneralValue("Version/version","4.0");
     }
     else{
             settings->generalValue("Version/version",QVariant()).toString();
     }
-
+    QFont font(settings->generalValue("Application/applicationFontMain").toString(), settings->generalValue("Application/sizeAppFont").toInt());
+    a.setFont(font);
+    
     /*
      * Translate QDialog
      */
     QTranslator translator;
-    translator.load(":/language/language/"+settings->generalValue("Language/language",QVariant()).toString()+".qm");
+    if(settings->generalValue("Language/language",QVariant()).toInt() == 0)
+        translator.load(":/language/language/Italian.qm");
+    else if(settings->generalValue("Language/language",QVariant()).toInt() == 1)
+        translator.load(":/language/language/English.qm");
     a.installTranslator(&translator);
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("codicefiscale.db");
-    db.open();
-
-    cod_fisc *codice = new cod_fisc;
-    codice->show();
-
-
+    engine.load(QUrl(QStringLiteral("qrc:/ui/splash.qml")));
     return a.exec();
 }

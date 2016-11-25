@@ -1,4 +1,14 @@
 /******************************************
+CodiceFiscale 4.0
+add Message dialog qml
+add setting UpperCase to default
+add support qt quick controls 2.0
+remove support qt4
+Add qml support
+Add sql support from qml
+remove interface ui 
+
+/******************************************
 CodiceFiscale 3.0
 Add database for codicefiscale
 remove stati.txt, comuni.txt, comuni_cap

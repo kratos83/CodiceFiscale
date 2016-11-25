@@ -16,5 +16,27 @@
         <file>images/cap.png</file>
         <file>images/preferences-system.png</file>
         <file>images/system-software-update.png</file>
+        <file>images/bordimage_text.png</file>
+        <file>images/document-print.png</file>
+        <file>images/document-preview.png</file>
+        <file>images/torta.png</file>
+        <file>images/pdf.png</file>
+        <file>images/calendar.png</file>
+        <file>images/return.png</file>
+        <file>images/info.png</file>
+        <file>images/warning.png</file>
+        <file>ui/FindCapItalian.qml</file>
+        <file>ui/Calendario.qml</file>
+        <file>ui/About.qml</file>
+        <file>ui/Message.qml</file>
+        <file>ui/Page1.qml</file>
+        <file>ui/Page2.qml</file>
+        <file>ui/PageMain1.qml</file>
+        <file>ui/PageMain2.qml</file>
+        <file>ui/VerifyCodicefiscale.qml</file>
+        <file>ui/VerifyPiva.qml</file>
+        <file>ui/script.js</file>
+        <file>ui/splash.qml</file>
+        <file>ui/Main.qml</file>
     </qresource>
 </RCC>

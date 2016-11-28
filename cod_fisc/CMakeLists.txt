@@ -117,6 +117,7 @@ IF(WIN32)
 		"${MINGW_PREFIX}/bin/libbz2-1.dll"
 		"${MINGW_PREFIX}/bin/libpcre-1.dll"
 		"${MINGW_PREFIX}/bin/d3dcompiler_47.dll"
+		"${MINGW_PREFIX}/bin/libEGL.dll"
 		"codicefiscale.db"
 		"../README.txt"
 		DESTINATION .

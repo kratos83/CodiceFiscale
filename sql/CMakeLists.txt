@@ -36,9 +36,13 @@ ENDIF(WIN64)
 
 LINK_LIBRARIES(-lpthread Qt5::Widgets Qt5::Core Qt5::Sql  Qt5::Qml Qt5::Quick)
 
-
+if(WIN32)
 ADD_LIBRARY( sqldatabase SHARED ${SOURCES} ${MOC_SOURCES})
-
 set_target_properties(sqldatabase PROPERTIES OUTPUT_NAME "sqldatabase" PREFIX "")
+file(WRITE qmldir "module Codelinsoft.Sql\n plugin sqldatabase")
+else()
+ADD_LIBRARY( sqldatabase SHARED ${SOURCES} ${MOC_SOURCES})
+file(WRITE qmldir "module Codelinsoft.Sql\n plugin sqldatabase")
+endif(WIN32)
 
 qt5_use_modules(sqldatabase Core Widgets Sql Qml Quick)

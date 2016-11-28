@@ -43,8 +43,13 @@ LINK_LIBRARIES(-lpthread Qt5::Widgets Qt5::Core Qt5::Sql
                 Qt5::Xml Qt5::Network)
 
 
+if(WIN32)
 ADD_LIBRARY( utils SHARED ${SOURCES} ${MOC_SOURCES})
-
 set_target_properties(utils PROPERTIES OUTPUT_NAME "utils" PREFIX "")
+file(WRITE qmldir "module Codelinsoft.Utils\n plugin utils")
+else()
+ADD_LIBRARY( utils SHARED ${SOURCES} ${MOC_SOURCES})
+file(WRITE qmldir "module Codelinsoft.Utils\n plugin utils")
+endif(WIN32)
 
 qt5_use_modules(utils Core Widgets Sql Qml Quick)

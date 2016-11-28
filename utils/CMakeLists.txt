@@ -45,7 +45,6 @@ LINK_LIBRARIES(-lpthread Qt5::Widgets Qt5::Core Qt5::Sql
 
 ADD_LIBRARY( utils SHARED ${SOURCES} ${MOC_SOURCES})
 
-set_target_properties(utils PROPERTIES
-         LIBRARY_OUTPUT_DIRECTORY .)
+set_target_properties(utils PROPERTIES OUTPUT_NAME "utils" PREFIX "")
 
 qt5_use_modules(utils Core Widgets Sql Qml Quick)

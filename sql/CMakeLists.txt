@@ -39,7 +39,6 @@ LINK_LIBRARIES(-lpthread Qt5::Widgets Qt5::Core Qt5::Sql  Qt5::Qml Qt5::Quick)
 
 ADD_LIBRARY( sqldatabase SHARED ${SOURCES} ${MOC_SOURCES})
 
-set_target_properties(sqldatabase PROPERTIES
-         LIBRARY_OUTPUT_DIRECTORY .)
+set_target_properties(sqldatabase PROPERTIES OUTPUT_NAME "sqldatabase" PREFIX "")
 
 qt5_use_modules(sqldatabase Core Widgets Sql Qml Quick)

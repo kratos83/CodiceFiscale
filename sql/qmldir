@@ -1,2 +1,2 @@
 module Codelinsoft.Sql
-plugin libsqldatabase
+plugin sqldatabase

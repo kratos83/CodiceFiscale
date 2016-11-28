@@ -51,7 +51,7 @@
 -I/usr/lib64/qt5/./mkspecs/linux-g++
 -I/usr/include/qt5/QtGui
 -I/usr/include
--I/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/cod_fisc
+-I/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/build/cod_fisc
 -o
-/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/cod_fisc/moc_settingsmanager.cpp
+/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/build/cod_fisc/moc_settingsmanager.cpp
 /home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/cod_fisc/settingsmanager.h

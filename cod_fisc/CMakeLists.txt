@@ -115,6 +115,8 @@ IF(WIN32)
 		"${MINGW_PREFIX}/bin/libpcre16-0.dll"
 		"${MINGW_PREFIX}/bin/libintl-8.dll"
 		"${MINGW_PREFIX}/bin/libbz2-1.dll"
+		"${MINGW_PREFIX}/bin/libpcre-1.dll"
+		"${MINGW_PREFIX}/bin/d3dcompiler_47.dll"
 		"codicefiscale.db"
 		"../README.txt"
 		DESTINATION .
@@ -131,6 +133,19 @@ IF(WIN32)
 		"${MINGW_PREFIX}/lib/qt5/plugins/printsupport/windowsprintersupport.dll" 
 		DESTINATION ./printsupport
 		)
+    INSTALL(DIRECTORY
+        "${MINGW_PREFIX}/lib/qt5/plugins/imageformats/"
+        DESTINATION ./imageformats
+    )
+    INSTALL(DIRECTORY
+        "${MINGW_PREFIX}/share/qt5/qml/QtQuick/"
+        DESTINATION ./QtQuick)
+    INSTALL(DIRECTORY
+        "${MINGW_PREFIX}/share/qt5/qml/QtQuick.2/"
+        DESTINATION ./QtQuick.2)
+    INSTALL(DIRECTORY
+        "Codelinsoft/"
+        DESTINATION ./Codelinsoft)
 	INSTALL(FILES
 		"../windows/gunzip.exe"
 		"../windows/gzip.exe"

@@ -1,0 +1,4 @@
+-I/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/build
+-o
+/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/build/sql/moc_sqldb_plugin.cpp
+/home/angelo/Progetti/progetti_completi/codicefiscale/codicefiscale-3.0/sql/sqldb_plugin.h

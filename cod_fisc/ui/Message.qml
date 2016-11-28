@@ -42,7 +42,7 @@
 ****************************************************************************/
 
 import QtQuick 2.2
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
@@ -84,10 +84,9 @@ Dialog {
                     Layout.fillWidth: true
                     Layout.preferredWidth: 14
                 }
-                Button{
+                Bottone{
                     id: bt_about
                     text: qsTr("Ok")
-                    highlighted : true
                     onClicked: close()
                 }
             }

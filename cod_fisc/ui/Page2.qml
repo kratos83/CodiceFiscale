@@ -41,7 +41,7 @@
 ****************************************************************************/
 
 import QtQuick 2.3
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
@@ -100,9 +100,10 @@ Item {
                         Layout.fillWidth: true
                         Layout.preferredWidth: 14
                     }
-                    Button{
+                    Bottone{
                         id: btImpoAgg
                         text: qsTr("Aggiorna")
+                        iconSource: "qrc:/images/system-software-update.svg"
                         onClicked: impo.self_update()
                     }
                     Item{
@@ -112,10 +113,10 @@ Item {
                     }
                 }
                 Item{
-                        id: spacing18
-                        Layout.fillHeight: true
-                        Layout.preferredHeight: 14
-                    }
+                    id: spacing18
+                    Layout.fillHeight: true
+                    Layout.preferredHeight: 14
+                }
             }
          }
          RowLayout{
@@ -124,16 +125,16 @@ Item {
                 Layout.fillWidth: true
                 Layout.preferredWidth: 14
             }
-            Button{
+            Bottone{
                 id: bt_ex
-                highlighted : true
                 text: qsTr("Torna indietro")
+                iconSource: "qrc:/images/return.svg"
                 onClicked: pageImpo.push(pageMain1)
             }
-            Button{
+            Bottone{
                 id: bt_app
-                highlighted : true
                 text: qsTr("Applica")
+                iconSource: "qrc:/images/dialog-ok-apply.svg"
                 onClicked: applica()
             }
         }

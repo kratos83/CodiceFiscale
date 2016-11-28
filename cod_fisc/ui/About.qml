@@ -41,7 +41,7 @@
 ****************************************************************************/
 
 import QtQuick 2.2
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
@@ -128,10 +128,10 @@ Item {
                         Layout.fillWidth: true
                         Layout.preferredWidth: 14
                     }
-                    Button{
+                    Bottone{
                         id: bt_about
                         text: qsTr("Torna indietro")
-                        highlighted : true
+                        iconSource: "qrc:/images/return.svg"
                         onClicked: pageImpo.push(pageMain1)
                     }
                 }

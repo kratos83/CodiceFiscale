@@ -47,13 +47,13 @@ function readCodiceFiscale(testo)
             
     if(testo.length == 0)
     {
-        img.source = "qrc:/images/dialog-close.png"
+        img.source = "qrc:/images/dialog-close.svg"
         label_text.text=qsTr("Errore: Non hai inserito nessun carattere o numero...")
     }
     
     if(testo.length != 16)
     {
-        img.source = "qrc:/images/dialog-close.png"
+        img.source = "qrc:/images/dialog-close.svg"
         label_text.text = qsTr("La lunghezza del codice fiscale non è\n"+
                                 "corretta: il codice fiscale deve essere lungo\n"+
                                 "esattamente 16 caratteri...")
@@ -63,7 +63,7 @@ function readCodiceFiscale(testo)
     for(var i=0; i<16;i++)
     {
         if( mVal.indexOf( testo.charAt(i) ) == -1 ){
-            img.source = "qrc:/images/dialog-close.png"
+            img.source = "qrc:/images/dialog-close.svg"
             label_text.text = qsTr("Il codice fiscale contiene dei caratteri non validi:\n"+
                                     "i soli caratteri validi sono le lettere e le cifre.")
         }
@@ -81,13 +81,13 @@ function readCodiceFiscale(testo)
     
     if(s%26 != testo.charCodeAt(15)-'A'.charCodeAt(0))
     {
-        img.source = "qrc:/images/dialog-close.png"
+        img.source = "qrc:/images/dialog-close.svg"
         label_text.text = qsTr("Il codice fiscale inserito non è corretto.\n"+
                                 "Il codice di controllo non corrisponde.")
     }
     else
     {
-        img.source = "qrc:/images/dialog-ok-apply.png"
+        img.source = "qrc:/images/dialog-ok-apply.svg"
         label_text.text = qsTr("Il codice fiscale inserito è corretto.")
     }
 }
@@ -98,13 +98,13 @@ function controllaPIVA(piva)
     var i,s,c,numero;
     
     if( piva.length == 0 ){ 
-        img_iva.source = "qrc:/images/dialog-close.png";
+        img_iva.source = "qrc:/images/dialog-close.svg";
         label_iva.text = qsTr("Errore: Non hai inserito nessun numero.")
     }
 
     if( piva.length != 11 )
     {
-        img_iva.source = "qrc:/images/dialog-close.png";
+        img_iva.source = "qrc:/images/dialog-close.svg";
         label_iva.text = qsTr("La lunghezza della partita IVA non è\n"+
                                "corretta: la partita iva deve essere lunga\n"+
                                "esattamente 11 caratteri numerici")
@@ -114,7 +114,7 @@ function controllaPIVA(piva)
 
     for( i = 0; i < 11; i++ ){ 
         if( numero.indexOf( piva.charAt(i) ) == -1 ){
-            img_iva.source = "qrc:/images/dialog-close.png";
+            img_iva.source = "qrc:/images/dialog-close.svg";
             label_iva.text = qsTr("La lunghezza della partita IVA non è\n"+
                                "corretta: la partita iva deve essere lunga\n"+
                                "esattamente 11 caratteri numerici")
@@ -133,12 +133,12 @@ function controllaPIVA(piva)
     }
 
     if( ( 10 - s%10 )%10 != piva.charCodeAt(10) - '0'.charCodeAt(0)){
-        img_iva.source = "qrc:/images/dialog-close.png";
+        img_iva.source = "qrc:/images/dialog-close.svg";
         label_iva.text = qsTr("La partita IVA non è valida:\n"+
                                   "il codice di controllo non corrisponde")
     }
     else{
-        img_iva.source = "qrc:/images/dialog-ok-apply.png"
+        img_iva.source = "qrc:/images/dialog-ok-apply.svg"
         label_iva.text =qsTr("La partita iva è corretta.")
     }
 
@@ -245,13 +245,13 @@ function getComune(comune)
 {
     var codiceComune;
     if(pageMain1.combo.currentIndex==0){
-        pageMain2.mProvincia.text=m_model.setQueryModel("select provincia from paesi where paese='"+pageMain1.combo_cm_st.currentText+"'")
-        codiceComune = m_model.setQueryModel("select cod_paese from paesi where paese='"+pageMain1.combo_cm_st.currentText+"'")
+        pageMain2.mProvincia.text=m_model.setQueryModel("select provincia from paesi where paese='"+pageMain1.combo_cm_st.editText+"'")
+        codiceComune = m_model.setQueryModel("select cod_paese from paesi where paese='"+pageMain1.combo_cm_st.editText+"'")
         pageMain2.mLuogoDiNascita.text=pageMain1.combo_cm_st.currentText
     }
     else if(pageMain1.combo.currentIndex==1){
-        pageMain2.mProvincia.text=m_model1.setQueryModel("select provincia from stati where stato='"+pageMain1.combo_cm_st.currentText+"'")
-        codiceComune = m_model1.setQueryModel("select cod_stato from stati where stato='"+pageMain1.combo_cm_st.currentText+"'")
+        pageMain2.mProvincia.text=m_model1.setQueryModel("select provincia from stati where stato='"+pageMain1.combo_cm_st.editText+"'")
+        codiceComune = m_model1.setQueryModel("select cod_stato from stati where stato='"+pageMain1.combo_cm_st.editText+"'")
         pageMain2.mLuogoDiNascita.text=pageMain1.combo_cm_st.currentText
     }
     return codiceComune;

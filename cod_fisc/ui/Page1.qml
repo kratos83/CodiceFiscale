@@ -41,7 +41,7 @@
 ****************************************************************************/
 
 import QtQuick 2.3
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
@@ -108,7 +108,6 @@ Item {
                                 }
                                 SpinBox{
                                     id: spin
-                                    editable: true
                                     Layout.fillWidth: true
                                     value: 12
                                 }
@@ -160,7 +159,6 @@ Item {
                                 }
                                 SpinBox{
                                     id: mspin
-                                    editable: true
                                     Layout.fillWidth: true
                                     value: 12
                                 }
@@ -216,16 +214,16 @@ Item {
                     Layout.fillWidth: true
                     Layout.preferredWidth: 14
                 }
-                Button{
+                Bottone{
                     id: bt_ex
-                    highlighted : true
                     text: qsTr("Torna indietro")
+                    iconSource: "qrc:/images/return.svg"
                     onClicked: pageImpo.push(pageMain1)
                 }
-                Button{
+                Bottone{
                     id: bt_app
-                    highlighted : true
                     text: qsTr("Applica")
+                    iconSource: "qrc:/images/dialog-ok-apply.svg"
                     onClicked: applica()
                 }
             }
@@ -260,9 +258,9 @@ Item {
                 mcomboFontEditor.activated(mcomboFontEditor.currentIndex);
         }
         setting.setGeneralValue("Application/applicationFont",comboFontEditor.currentIndex);
-        setting.setGeneralValue("Application/applicationFontMain",comboFontEditor.displayText);
+        setting.setGeneralValue("Application/applicationFontMain",comboFontEditor.currentText);
         setting.setGeneralValue("Application/font",mcomboFontEditor.currentIndex);
-        setting.setGeneralValue("Application/fontMain",mcomboFontEditor.displayText);
+        setting.setGeneralValue("Application/fontMain",mcomboFontEditor.currentText);
         setting.setGeneralValue("Application/sizeAppFont",spin.value);
         setting.setGeneralValue("Application/sizeFont",mspin.value);
         setting.setGeneralValue("Language/language",combo_lng.currentIndex);

@@ -41,7 +41,7 @@
 ****************************************************************************/
 
 import QtQuick 2.2
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import "script.js" as Verifica
@@ -102,17 +102,17 @@ Item {
                         Layout.preferredHeight: 25
                         Layout.preferredWidth: 30
                     }
-                    Button{
+                    Bottone{
                         id: bt_ver
-                        highlighted : true
                         text: qsTr("Verifica")
+                        iconSource: "qrc:/images/dialog-ok-apply.svg"
                         onClicked: Verifica.controllaPIVA(txt.text)
                     }
         
-                    Button{
+                    Bottone{
                         id: bt_ex
-                        highlighted : true
                         text: qsTr("Torna indietro")
+                        iconSource: "qrc:/images/return.svg"
                         onClicked: pageImpo.push(pageMain1)
                     }
                 }

@@ -41,7 +41,7 @@
 ****************************************************************************/
 
 import QtQuick 2.2
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Sql 1.0
@@ -71,7 +71,7 @@ Item {
                     id: img_cap
                     fillMode: Image.Stretch
                     anchors.horizontalCenter: parent.horizontalCenter
-                    source: "qrc:/images/cap.png";
+                    source: "qrc:/images/cap.svg";
                 }
                 
                 RowLayout{
@@ -81,9 +81,9 @@ Item {
 
                     ComboBox{
                         id:combo
-                        //editable: true
                         Layout.fillWidth: true
                         model: m_model
+                        editable: true
                         Component.onCompleted: {
                             m_model.setExcecuteQuery("select comune from comuni_cap");
                         }
@@ -119,19 +119,19 @@ Item {
                     Layout.preferredWidth: 30
                 }
                 
-                Button{
+                Bottone{
                     id: bt_cerca
                     text: qsTr("Cerca")
-                    highlighted : true
+                    iconSource: "qrc:/images/edit-find.svg"
                     onClicked: {
-                        label_vis.text=m_model1.setQueryModel("select cap from comuni_cap where comune='"+combo.currentText+"'");
+                        label_vis.text=m_model1.setQueryModel("select cap from comuni_cap where comune='"+combo.editText+"'");
                     }
                 }
 
-                Button{
+                Bottone{
                     id: chiudi
                     text: qsTr("Torna indietro")
-                    highlighted : true
+                    iconSource: "qrc:/images/return.svg"
                     onClicked: pageImpo.push(pageMain1)
                 }
             }

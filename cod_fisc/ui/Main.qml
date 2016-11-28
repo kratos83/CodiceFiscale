@@ -42,7 +42,7 @@
 ****************************************************************************/
 
 import QtQuick 2.2
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
@@ -54,8 +54,8 @@ import "script.js" as Script
 ApplicationWindow {
     id: window
     visible: true
-    width: 465
-    height: 550
+    width: 470
+    height: 450
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
     title: qsTr("CodiceFiscale")+" "+manager.generalValue("Version/version") 
@@ -83,7 +83,6 @@ ApplicationWindow {
             window.orientation = window.orientationPortrait
         }
     }
-    
     Text {
         id: hiddenText
     }
@@ -118,9 +117,11 @@ ApplicationWindow {
     }
         
     //Imposto il menu
-    header: RowLayout{
-        ToolButton{
-            text: qsTr("Menu")
+    toolBar: RowLayout{
+        Bottone{
+            id: men
+            iconSource: "qrc:/images/icon_menu_gray.svg"
+            toolTip: qsTr("Menu")
             onClicked: onMenu()
         }
         Item{ 
@@ -133,7 +134,8 @@ ApplicationWindow {
         id: menuBar
         z: 3
         x: -menuWidth
-
+        antialiasing: true
+        
         Behavior on x { NumberAnimation { duration: 500; easing.type: Easing.OutQuad } }
         onXChanged: {
             menuProgressOpening = (1-Math.abs(menuBar.x/menuWidth))
@@ -164,19 +166,22 @@ ApplicationWindow {
         }
         ToolBar{
             ColumnLayout{
-                ToolButton{
-                    text: qsTr("Esci")
+                BarButton{
+                    testo: qsTr("Esci")
+                    iconSource: "qrc:/images/exit.svg"
                     onClicked: Qt.quit()
                 }
-                ToolButton{
-                    text: qsTr("Stampa")
+                BarButton{
+                    testo: qsTr("Stampa")
+                    iconSource: "qrc:/images/document-print.svg"
                     onClicked: {onMenu();saveimage.stampaCodice();}
                 }
-                ToolButton{
+                BarButton{
                     checkable: true
-                    text: qsTr("Visualizza anteprima");
+                    testo: qsTr("Visualizza anteprima");
+                    iconSource: "qrc:/images/document-preview.svg"
                     onClicked: {
-                        if(checked==true){
+                        if(checked){
                             onMenu()
                             pageMain2.visible=true
                             pageImpo.push(pageMain2)
@@ -187,36 +192,43 @@ ApplicationWindow {
                         }
                     }
                 }
-                ToolButton{
-                    text: qsTr("Esporta in pdf")
+                BarButton{
+                    testo: qsTr("Esporta in pdf")
+                    iconSource: "qrc:/images/pdf.svg"
                     onClicked: {onMenu();saveimage.exportPdf()}
                 }
-                ToolButton{
-                    text: qsTr("Esporta in immagine")
+                BarButton{
+                    testo: qsTr("Esporta in immagine")
                     onClicked: {onMenu();saveimage.saveImages(pageMain2.imgageUpdate);}
                 }
-                ToolButton{
-                    text: qsTr("Verifica codice fiscale")
+                BarButton{
+                    testo: qsTr("Verifica codice fiscale")
+                    iconSource: "qrc:/images/codicefisc.png"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("VerifyCodicefiscale.qml"))}
                 }
-                ToolButton{
-                    text: qsTr("Verifica partita iva")
+                BarButton{
+                    testo: qsTr("Verifica partita iva")
+                    iconSource: "qrc:/images/iva.png"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("VerifyPiva.qml"))}
                 }
-                ToolButton{
-                    text: qsTr("Cerca CAP(Codici avviamenti postali)")
+                BarButton{
+                    testo: qsTr("Cerca CAP(Codici avviamenti postali)")
+                    iconSource: "qrc:/images/cap.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("FindCapItalian.qml"))}
                 }
-                ToolButton{
-                    text: qsTr("Impostazioni")
+                BarButton{
+                    testo: qsTr("Impostazioni")
+                    iconSource: "qrc:/images/preferences-system.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("Page1.qml"))}
                 }
-                ToolButton{
-                    text: qsTr("Aggiornamento")
+                BarButton{
+                    testo: qsTr("Aggiornamento")
+                    iconSource: "qrc:/images/system-software-update.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("Page2.qml"))}
                 }
-                ToolButton{
-                    text: qsTr("About")
+                BarButton{
+                    testo: qsTr("About")
+                    iconSource: "qrc:/images/info.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("About.qml"))}
                 }
                 Item{ 
@@ -226,6 +238,11 @@ ApplicationWindow {
                 }
             }
         }
+    }
+     RectMenu {
+        id: mainMenu
+        z: 1
+        anchors.fill: parent
     }
        GridLayout{
             anchors.fill: parent
@@ -242,16 +259,17 @@ ApplicationWindow {
                 Layout.preferredHeight: 14
             }
        }
-      footer:RowLayout{
+      statusBar:RowLayout{
                 Item{
                     id: spacing4
                     Layout.fillWidth: true
                     Layout.preferredWidth: 14
                 }
-                Button{
+                Bottone{
                     id: calcola
                     text: qsTr("Calcola")
-                    highlighted : true
+                    toolTip: qsTr("Calcola")
+                    iconSource: "qrc:/images/codicefisc.png"
                     onClicked:{
                         if(pageMain1.cognome.text=="" || pageMain1.nome.text == "" 
                            && pageMain1.maschio.checked==false && pageMain1.femmina.checked==false){
@@ -261,16 +279,18 @@ ApplicationWindow {
                             pageMain1.calcolo.text=Script.calcolaCodiceFiscale(pageMain2.mName.text,pageMain2.mSurname.text,pageMain2.mSesso.text,pageMain2.mData.text,pageMain2.mData.text,pageMain2.mData.text,pageMain2.mLuogoDiNascita.text)
                     }
                 }
-                Button{
+                Bottone{
                     id: cancella
                     text: qsTr("Cancella")
-                    highlighted : true
+                    toolTip: qsTr("Cancella")
+                    iconSource: "qrc:/images/edit-delete.svg"
                     onClicked: Script.cancella()
                 }
-                Button{
+                Bottone{
                     id: esci
                     text: qsTr("Esci")
-                    highlighted : true
+                    toolTip: qsTr("Esci")
+                    iconSource: "qrc:/images/dialog-close.svg"
                     onClicked: Qt.quit();
                 }
             }
@@ -297,7 +317,7 @@ ApplicationWindow {
                    "Controlla il cognome\n"+
                    "Controlla il nome\n"+
                    "Controlla il sesso")
-        icon: "qrc:/images/warning.png"
+        icon: "qrc:/images/dialog-warning.svg"
         visible: false
     }
     

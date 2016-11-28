@@ -42,7 +42,7 @@
 ****************************************************************************/
 
 import QtQuick 2.3
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.2
 import Codelinsoft.Sql 1.0
@@ -146,6 +146,7 @@ Rectangle {
                     ComboBox{
                         id: combo_cm_st
                         model: m_model
+                        editable: true
                         Layout.fillWidth: true
                         currentIndex: 0
                     }

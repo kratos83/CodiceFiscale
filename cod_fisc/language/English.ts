@@ -113,6 +113,18 @@ Check the surname
 Check the name
 Check the sex</translation>
     </message>
+    <message>
+        <source>Impostare il carattere per
+una corretta visualizzazione
+Se usi Linux imposta il carattere Noto Sans,
+se usi windows imposta il carattere Tahoma,
+se usi MacOsX imposta il carattere Fira Sans.</source>
+        <translation>Set the font for
+proper display
+If you are using Linux sets the Noto Sans font,
+if you use windows sets the Tahoma font,
+if you use MacOsX sets the Fira Sans font.</translation>
+    </message>
 </context>
 <context>
     <name>Message</name>
@@ -257,31 +269,31 @@ Check the sex</translation>
     <name>SaveImage</name>
     <message>
         <source>Esporta immagine</source>
-        <translation>Export to image</translation>
+        <translation type="vanished">Export to image</translation>
     </message>
     <message>
         <source>Images (*.png);;Tutti i file(*.*);;PNG(*.png)</source>
-        <translation>Images (*.png);;Tutti i file(*.*);;PNG(*.png)</translation>
+        <translation type="vanished">Images (*.png);;Tutti i file(*.*);;PNG(*.png)</translation>
     </message>
     <message>
         <source>CodiceFiscale</source>
-        <translation>Tax code</translation>
+        <translation type="vanished">Tax code</translation>
     </message>
     <message>
         <source>Impossibile salvare l&apos;immagine</source>
-        <translation>Can not Save Image</translation>
+        <translation type="vanished">Can not Save Image</translation>
     </message>
     <message>
         <source>Esporta in PDF</source>
-        <translation>Export to pdf</translation>
+        <translation type="vanished">Export to pdf</translation>
     </message>
     <message>
         <source>Pdf Files(*.pdf);;Tutti i file(*.*)</source>
-        <translation>Pdf Files(*.pdf);;All file(*.*)</translation>
+        <translation type="vanished">Pdf Files(*.pdf);;All file(*.*)</translation>
     </message>
     <message>
         <source>Anteprima di stampa.</source>
-        <translation>Print preview.</translation>
+        <translation type="vanished">Print preview.</translation>
     </message>
 </context>
 <context>
@@ -608,26 +620,26 @@ generali</source>
     </message>
     <message>
         <source>E&apos; disponibile la nuova versione </source>
-        <translation>There is a new version</translation>
+        <translation type="vanished">There is a new version</translation>
     </message>
     <message>
         <source>,se vuoi aggiornare clicca per aggiornare.
 Se clicchi ok si chiude il programma e si aggiorna il software alla nuova versione</source>
-        <translation>If you want to update , click to update.
+        <translation type="vanished">If you want to update , click to update.
 If you click OK to close the program and updating the software to the new version</translation>
     </message>
     <message>
         <source>CodiceFiscale</source>
-        <translation>Tax code</translation>
+        <translation type="vanished">Tax code</translation>
     </message>
     <message>
         <source>Errore...
 </source>
-        <translation>Errore...</translation>
+        <translation type="vanished">Errore...</translation>
     </message>
     <message>
         <source>Stai usando la nuova versione</source>
-        <translation>Are you using the new version</translation>
+        <translation type="vanished">Are you using the new version</translation>
     </message>
 </context>
 <context>

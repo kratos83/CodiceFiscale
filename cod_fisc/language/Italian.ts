@@ -51,83 +51,95 @@
     <name>Main</name>
     <message>
         <location filename="../ui/Main.qml" line="61"/>
-        <location filename="../ui/Main.qml" line="295"/>
+        <location filename="../ui/Main.qml" line="328"/>
         <source>CodiceFiscale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="123"/>
+        <location filename="../ui/Main.qml" line="124"/>
         <source>Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="168"/>
-        <location filename="../ui/Main.qml" line="272"/>
+        <location filename="../ui/Main.qml" line="170"/>
+        <location filename="../ui/Main.qml" line="304"/>
+        <location filename="../ui/Main.qml" line="305"/>
         <source>Esci</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="172"/>
+        <location filename="../ui/Main.qml" line="175"/>
         <source>Stampa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="177"/>
+        <location filename="../ui/Main.qml" line="181"/>
         <source>Visualizza anteprima</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="191"/>
+        <location filename="../ui/Main.qml" line="196"/>
         <source>Esporta in pdf</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="195"/>
+        <location filename="../ui/Main.qml" line="201"/>
         <source>Esporta in immagine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="199"/>
+        <location filename="../ui/Main.qml" line="205"/>
         <source>Verifica codice fiscale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="203"/>
+        <location filename="../ui/Main.qml" line="210"/>
         <source>Verifica partita iva</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="207"/>
+        <location filename="../ui/Main.qml" line="215"/>
         <source>Cerca CAP(Codici avviamenti postali)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="211"/>
+        <location filename="../ui/Main.qml" line="220"/>
         <source>Impostazioni</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="215"/>
+        <location filename="../ui/Main.qml" line="225"/>
         <source>Aggiornamento</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="219"/>
+        <location filename="../ui/Main.qml" line="230"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="253"/>
+        <location filename="../ui/Main.qml" line="255"/>
+        <source>Impostare il carattere per
+una corretta visualizzazione
+Se usi Linux imposta il carattere Noto Sans,
+se usi windows imposta il carattere Tahoma,
+se usi MacOsX imposta il carattere Fira Sans.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Main.qml" line="283"/>
+        <location filename="../ui/Main.qml" line="284"/>
         <source>Calcola</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="266"/>
+        <location filename="../ui/Main.qml" line="297"/>
+        <location filename="../ui/Main.qml" line="298"/>
         <source>Cancella</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Main.qml" line="296"/>
+        <location filename="../ui/Main.qml" line="329"/>
         <source>Inserisci i dati correttamente.
 
 Controlla il cognome
@@ -189,12 +201,12 @@ Controlla il sesso</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Page1.qml" line="220"/>
+        <location filename="../ui/Page1.qml" line="219"/>
         <source>Torna indietro</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Page1.qml" line="226"/>
+        <location filename="../ui/Page1.qml" line="225"/>
         <source>Applica</source>
         <translation type="unfinished"></translation>
     </message>
@@ -282,17 +294,17 @@ Controlla il sesso</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/PageMain1.qml" line="156"/>
+        <location filename="../ui/PageMain1.qml" line="157"/>
         <source>Data di nascita</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/PageMain1.qml" line="171"/>
+        <location filename="../ui/PageMain1.qml" line="172"/>
         <source>Codice Fiscale</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/PageMain1.qml" line="180"/>
+        <location filename="../ui/PageMain1.qml" line="181"/>
         <source>Calcolo codice fiscale</source>
         <translation type="unfinished"></translation>
     </message>
@@ -306,44 +318,6 @@ Controlla il sesso</source>
     </message>
 </context>
 <context>
-    <name>SaveImage</name>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="41"/>
-        <source>Esporta immagine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="42"/>
-        <source>Images (*.png);;Tutti i file(*.*);;PNG(*.png)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="61"/>
-        <source>CodiceFiscale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="61"/>
-        <source>Impossibile salvare l&apos;immagine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="78"/>
-        <source>Esporta in PDF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="79"/>
-        <source>Pdf Files(*.pdf);;Tutti i file(*.*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/saveimage.cpp" line="133"/>
-        <source>Anteprima di stampa.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>VerifyCodicefiscale</name>
     <message>
         <location filename="../ui/VerifyCodicefiscale.qml" line="77"/>
@@ -352,12 +326,12 @@ Controlla il sesso</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/VerifyCodicefiscale.qml" line="108"/>
+        <location filename="../ui/VerifyCodicefiscale.qml" line="107"/>
         <source>Verifica</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/VerifyCodicefiscale.qml" line="115"/>
+        <location filename="../ui/VerifyCodicefiscale.qml" line="114"/>
         <source>Torna indietro</source>
         <translation type="unfinished"></translation>
     </message>
@@ -371,44 +345,13 @@ Controlla il sesso</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/VerifyPiva.qml" line="108"/>
+        <location filename="../ui/VerifyPiva.qml" line="107"/>
         <source>Verifica</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/VerifyPiva.qml" line="115"/>
+        <location filename="../ui/VerifyPiva.qml" line="114"/>
         <source>Torna indietro</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>pref</name>
-    <message>
-        <location filename="../../utils/pref.cpp" line="95"/>
-        <source>E&apos; disponibile la nuova versione </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/pref.cpp" line="95"/>
-        <source>,se vuoi aggiornare clicca per aggiornare.
-Se clicchi ok si chiude il programma e si aggiorna il software alla nuova versione</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/pref.cpp" line="114"/>
-        <location filename="../../utils/pref.cpp" line="118"/>
-        <source>CodiceFiscale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/pref.cpp" line="114"/>
-        <source>Errore...
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../utils/pref.cpp" line="118"/>
-        <source>Stai usando la nuova versione</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

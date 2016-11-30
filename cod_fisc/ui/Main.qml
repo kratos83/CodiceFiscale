@@ -239,10 +239,23 @@ ApplicationWindow {
             }
         }
     }
-     RectMenu {
+    RectMenu {
         id: mainMenu
         z: 1
         anchors.fill: parent
+    }
+    
+    RectMessage{
+        id: msg
+        z:2
+        anchors.bottom: parent.bottom
+        visible: false
+        width: window.width
+        height: 100
+        text: qsTr("Impostare il carattere per\nuna corretta visualizzazione\n"+
+                   "Se usi Linux imposta il carattere Noto Sans,\n" +
+                   "se usi windows imposta il carattere Tahoma,\n"+
+                   "se usi MacOsX imposta il carattere Fira Sans.")
     }
        GridLayout{
             anchors.fill: parent
@@ -325,8 +338,31 @@ ApplicationWindow {
         menuBar.x = window.menuIsShown ? -menuWidth : 0
     }
     
+    function visRectMessage()
+    {
+        if(Qt.platform.os == "linux")
+        {
+            if(manager.generalValue("Application/applicationFontMain") != "Noto Sans" ||
+               manager.generalValue("Application/fontMain") != "Noto Sans")
+                msg.visible=true
+        }
+        else if(Qt.platform.os == "windows")
+        {
+            if(manager.generalValue("Application/applicationFontMain") != "Tahoma" ||
+               manager.generalValue("Application/fontMain") != "Tahoma")
+                msg.visible=true
+        }
+        else if(Qt.platform.os == "darwin")
+        {
+            if(manager.generalValue("Application/applicationFontMain") != "Fira Sans" ||
+               manager.generalValue("Application/fontMain") != "Fira Sans")
+                msg.visible=true
+        }
+    }
+    
     Component.onCompleted:{
         dat.openDatabase();
+        visRectMessage()
         m_model.setExcecuteQuery("select paese from paesi");
         m_model1.setExcecuteQuery("select stato from stati")
     }

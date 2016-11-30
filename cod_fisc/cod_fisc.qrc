@@ -31,6 +31,8 @@
         <file>ui/Message.qml</file>
         <file>ui/BarButton.qml</file>
         <file>ui/Bottone.qml</file>
+        <file>ui/ImageClick.qml</file>
+        <file>ui/RectMessage.qml</file>
         <file>ui/Page1.qml</file>
         <file>ui/Page2.qml</file>
         <file>ui/PageMain1.qml</file>

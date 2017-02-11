@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/evpo/EncryptPad.svg?branch=master)](https://travis-ci.org/evpo/EncryptPad)
+
 CodiceFiscale 4.0
 =========
 

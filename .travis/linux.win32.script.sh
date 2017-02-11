@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./build_mingw32
+../build_mingw32

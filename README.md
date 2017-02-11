@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/evpo/EncryptPad.svg?branch=master)](https://travis-ci.org/evpo/EncryptPad)
+[![Build Status](https://travis-ci.org/kratos83/CodiceFiscale/CodiceFiscale.svg?branch=master)](https://travis-ci.org/kratos83/CodiceFiscale)
 
 CodiceFiscale 4.0
 =========

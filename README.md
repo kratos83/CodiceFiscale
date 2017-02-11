@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kratos83/CodiceFiscale/CodiceFiscale.svg?branch=master)](https://travis-ci.org/kratos83/CodiceFiscale)
+[![Build Status](https://travis-ci.org/kratos83/CodiceFiscale.svg?branch=master)](https://travis-ci.org/kratos83/CodiceFiscale)
 
 CodiceFiscale 4.0
 =========

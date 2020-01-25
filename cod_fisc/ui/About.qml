@@ -40,8 +40,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtQuick.Controls 1.4
+import QtQuick 2.8
+import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
@@ -58,7 +58,6 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
             GridLayout{
-                anchors.fill: parent
                 rows: 5
                 flow: GridLayout.TopToBottom
                 
@@ -132,7 +131,7 @@ Item {
                         id: bt_about
                         text: qsTr("Torna indietro")
                         iconSource: "qrc:/images/return.svg"
-                        onClicked: pageImpo.push(pageMain1)
+                        onClicked: pageImpo.pop(pageMain1)
                     }
                 }
             }

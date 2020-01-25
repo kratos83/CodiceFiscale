@@ -41,13 +41,14 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.2
 import Codelinsoft.Utils 1.0
 
 Rectangle {
     id: rectMessage
+    radius: 10
     property alias text: txt.text
     color: "grey"
     
@@ -55,11 +56,13 @@ Rectangle {
         id: settings
     }
     
+    Behavior on x { NumberAnimation { duration: 2000; easing.type: Easing.OutQuad } }
+    
     ImageClick{
         id: images
         anchors.top: parent.top
         source: "qrc:/images/dialog-close.svg"
-        onClick: {rectMessage.visible=false}
+        onClick: {rectMessage.x=500}
     }
     
     Label{
@@ -68,6 +71,11 @@ Rectangle {
         color: "white"
         Layout.fillWidth: true
         anchors.horizontalCenter: parent.horizontalCenter
+        onXChanged: {
+            (1-Math.abs(rectMessage.x/rectMessage.width))
+        }
     }
+    
+    
 }
 

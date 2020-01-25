@@ -15,7 +15,8 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS} ${Qt5Gui_INCLUDE_DIRS}
 		    ${Qt5Core_INCLUDE_DIRS} ${Qt5Sql_INCLUDE_DIRS} 
 		    ${Qt5Xml_INCLUDE_DIRS} ${Qt5PrintSupport_INCLUDE_DIRS}
 		    ${Qt5Network_INCLUDE_DIRS} ${Qt5Svg_INCLUDE_DIRS}
-		    ${Qt5Qml_INCLUDE_DIRS} ${Qt5Quick_INCLUDE_DIRS})
+		    ${Qt5Qml_INCLUDE_DIRS} ${Qt5Quick_INCLUDE_DIRS}
+		    ${Qt5QuickControls2_INCLUDE_DIRS})
 find_package(Qt5Core  REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Gui   REQUIRED)
@@ -26,6 +27,7 @@ find_package(Qt5Svg REQUIRED)
 find_package(Qt5Qml   REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
+find_package(Qt5QuickControls2 REQUIRED)
 
 set(codicefiscale "codicefiscale")
 
@@ -163,8 +165,8 @@ get_filename_component(CODFISC ${CODFISC} PATH)
 add_custom_target(codifiscplugindir ALL
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Sql"
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:sqldatabase> "${CODFISC}/Codelinsoft/Sql"
-    COMMAND ${CMAKE_COMMAND} -E copy "../sql/qmldir" "${CODFISC}/Codelinsoft/Sql"
+    COMMAND ${CMAKE_COMMAND} -E copy "../../sql/qmldir" "${CODFISC}/Codelinsoft/Sql"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Utils"
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:utils> "${CODFISC}/Codelinsoft/Utils"
-    COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils")
+    COMMAND ${CMAKE_COMMAND} -E copy "../../utils/qmldir" "${CODFISC}/Codelinsoft/Utils")
 add_dependencies(codicefiscale codifiscplugindir)

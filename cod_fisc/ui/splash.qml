@@ -40,7 +40,7 @@
 ** OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
 **
 ****************************************************************************/
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Window 2.0
 
 Window {
@@ -61,10 +61,6 @@ Window {
     Image {
         id: splashImage
         source: "qrc:/images/codice_fiscale_logo.png"
-        MouseArea {
-            anchors.fill: parent
-            onClicked: Qt.quit()
-        }
     }
     Timer {
         interval: timeoutInterval; running: true; repeat: false

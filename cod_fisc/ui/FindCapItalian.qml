@@ -40,11 +40,12 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtQuick.Controls 1.4
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Sql 1.0
+//import Codelinsoft.Utils 1.0
 
 Item {
     id: cap
@@ -79,14 +80,12 @@ Item {
                         text: qsTr("Seleziona comune")
                     }
 
-                    ComboBox{
+                    COComboBox{
                         id:combo
                         Layout.fillWidth: true
-                        model: m_model
                         editable: true
-                        Component.onCompleted: {
-                            m_model.setExcecuteQuery("select comune from comuni_cap");
-                        }
+                        model:m_model;
+                        currentIndex: 0
                     }
                 }
             
@@ -124,7 +123,7 @@ Item {
                     text: qsTr("Cerca")
                     iconSource: "qrc:/images/edit-find.svg"
                     onClicked: {
-                        label_vis.text=m_model1.setQueryModel("select cap from comuni_cap where comune='"+combo.editText+"'");
+                        label_vis.text=m_model1.setQueryModel("select cap from comuni_cap where comune='"+combo.currentText+"'");
                     }
                 }
 
@@ -132,10 +131,13 @@ Item {
                     id: chiudi
                     text: qsTr("Torna indietro")
                     iconSource: "qrc:/images/return.svg"
-                    onClicked: pageImpo.push(pageMain1)
+                    onClicked: pageImpo.pop(pageMain1)
                 }
             }
             }
         }
     }
+    //Component.onCompleted: {
+      //  m_model.setExcecuteQuery("select comune from comuni_cap");
+    //}
 }

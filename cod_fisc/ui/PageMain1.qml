@@ -41,8 +41,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.3
-import QtQuick.Controls 1.4
+import QtQuick 2.5
+import QtQuick.Controls 2.0
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.2
 import Codelinsoft.Sql 1.0
@@ -126,6 +126,7 @@ Rectangle {
                     }
                     ComboBox{
                         id: combo
+                        editable: true
                         Layout.fillWidth: true
                         model: [qsTr("Comuni"),qsTr("Stati")]
                         onCurrentIndexChanged:{

@@ -41,8 +41,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtQuick.Controls 1.4
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
@@ -55,7 +55,7 @@ ApplicationWindow {
     id: window
     visible: true
     width: 470
-    height: 450
+    height: 470
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
     title: qsTr("CodiceFiscale")+" "+manager.generalValue("Version/version") 
@@ -117,7 +117,7 @@ ApplicationWindow {
     }
         
     //Imposto il menu
-    toolBar: RowLayout{
+    header: RowLayout{
         Bottone{
             id: men
             iconSource: "qrc:/images/icon_menu_gray.svg"
@@ -177,19 +177,12 @@ ApplicationWindow {
                     onClicked: {onMenu();saveimage.stampaCodice();}
                 }
                 BarButton{
-                    checkable: true
                     testo: qsTr("Visualizza anteprima");
                     iconSource: "qrc:/images/document-preview.svg"
                     onClicked: {
-                        if(checked){
-                            onMenu()
-                            pageMain2.visible=true
-                            pageImpo.push(pageMain2)
-                        }
-                        else{
-                            onMenu()
-                            pageImpo.push(pageMain1)
-                        }
+                        onMenu();
+                        pageMain2.visible=true
+                        pageImpo.push(pageMain2)
                     }
                 }
                 BarButton{
@@ -239,10 +232,13 @@ ApplicationWindow {
             }
         }
     }
+    
     RectMenu {
         id: mainMenu
         z: 1
         anchors.fill: parent
+        color: "grey"
+        opacity: window.menuProgressOpening*0.5
     }
     
     RectMessage{
@@ -272,7 +268,7 @@ ApplicationWindow {
                 Layout.preferredHeight: 14
             }
        }
-      statusBar:RowLayout{
+      footer:RowLayout{
                 Item{
                     id: spacing4
                     Layout.fillWidth: true

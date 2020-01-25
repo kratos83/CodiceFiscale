@@ -8,6 +8,11 @@ file(GLOB SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
 file(GLOB HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
      "*.h")
 
+include_directories(${Qt5Core_PRIVATE_INCLUDE_DIRS}
+                    ${Qt5Quick_PRIVATE_INCLUDE_DIRS}
+                    ${Qt5Qml_PRIVATE_INCLUDE_DIRS}
+                    ${Qt5Templates2_PRIVATE_INCLUDE_DIRS})
+                    
 find_package(Qt5Core  REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Gui REQUIRED)
@@ -22,8 +27,7 @@ set(utils_includes
 ${CMAKE_BINARY_DIR}
 )
 
-include_directories(${utils_includes} 
-                    ${Qt5PrintSupport_INCLUDE_DIRS})
+include_directories(${utils_includes})
 
 
 qt5_wrap_cpp(MOC_SOURCES ${HEADERS})
@@ -38,9 +42,7 @@ IF(WIN64)
 ADD_DEFINITIONS(-D_X64)
 ENDIF(WIN64)
 
-LINK_LIBRARIES(-lpthread Qt5::Widgets Qt5::Core Qt5::Sql 
-                Qt5::Qml Qt5::Quick Qt5::PrintSupport
-                Qt5::Xml Qt5::Network)
+LINK_LIBRARIES(-lpthread)
 
 
 if(WIN32)
@@ -52,4 +54,10 @@ ADD_LIBRARY( utils SHARED ${SOURCES} ${MOC_SOURCES})
 file(WRITE qmldir "module Codelinsoft.Utils\n plugin utils")
 endif(WIN32)
 
-qt5_use_modules(utils Core Widgets Sql Qml Quick)
+target_include_directories(utils SYSTEM PRIVATE ${Qt5Quick_PRIVATE_INCLUDE_DIRS})
+
+target_link_libraries(utils PUBLIC Qt5::Widgets Qt5::Core Qt5::Sql 
+                Qt5::Qml Qt5::Quick Qt5::PrintSupport
+                Qt5::Xml Qt5::Network Qt5::Quick Qt5::Qml)
+                
+qt5_use_modules(utils Core Widgets Sql Qml Quick QuickControls2)

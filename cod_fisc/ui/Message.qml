@@ -41,8 +41,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtQuick.Controls 1.4
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
@@ -51,6 +51,8 @@ Dialog {
     id: messaggio
     visible: true
     title: titolo
+    width: 150
+    height: 100
     standardButtons: StandardButton.NoButton
     property string informativeText;
     property string titolo;

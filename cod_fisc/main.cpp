@@ -61,8 +61,9 @@ int main(int argc, char *argv[])
     SettingsManager *settings = new SettingsManager();
 
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(":/images/codicefisc.png"));
     QQmlApplicationEngine engine;
-       
+    
     if(settings->generalValue("Version/version",QVariant()).toString().length() == 0 || settings->generalValue("Version/version",QVariant()).toString() <= "3.0"){
         settings->setGeneralValue("Version/version","4.0");
     }

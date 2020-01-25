@@ -245,13 +245,13 @@ function getComune(comune)
 {
     var codiceComune;
     if(pageMain1.combo.currentIndex==0){
-        pageMain2.mProvincia.text=m_model.setQueryModel("select provincia from paesi where paese='"+pageMain1.combo_cm_st.editText+"'")
-        codiceComune = m_model.setQueryModel("select cod_paese from paesi where paese='"+pageMain1.combo_cm_st.editText+"'")
+        pageMain2.mProvincia.text=m_model.setQueryModel("select provincia from paesi where paese='"+pageMain1.combo_cm_st.displayText+"'")
+        codiceComune = m_model.setQueryModel("select cod_paese from paesi where paese='"+pageMain1.combo_cm_st.displayText+"'")
         pageMain2.mLuogoDiNascita.text=pageMain1.combo_cm_st.currentText
     }
     else if(pageMain1.combo.currentIndex==1){
-        pageMain2.mProvincia.text=m_model1.setQueryModel("select provincia from stati where stato='"+pageMain1.combo_cm_st.editText+"'")
-        codiceComune = m_model1.setQueryModel("select cod_stato from stati where stato='"+pageMain1.combo_cm_st.editText+"'")
+        pageMain2.mProvincia.text=m_model1.setQueryModel("select provincia from stati where stato='"+pageMain1.combo_cm_st.displayText+"'")
+        codiceComune = m_model1.setQueryModel("select cod_stato from stati where stato='"+pageMain1.combo_cm_st.displayText+"'")
         pageMain2.mLuogoDiNascita.text=pageMain1.combo_cm_st.currentText
     }
     return codiceComune;

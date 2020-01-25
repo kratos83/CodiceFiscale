@@ -24,6 +24,53 @@ IF(VERSION_SUFFIX)
 	SET(VERSION "${VERSION}-${VERSION_SUFFIX}")
 ENDIF(VERSION_SUFFIX)
 
+# Set application version
+set(CODICEFISCALE_MAJOR_VERSION 0)
+set(CODICEFISCALE_MINOR_VERSION 1)
+set(CODICEFISCALE_PATCH_VERSION 0)
+set(CODICEFISCALE_VERSION ${DEMO_MAJOR_VERSION}.${DEMO_MINOR_VERSION})
+
+# An integer value that represents the version of the application
+# Increase it at each release
+set(DEMO_VERSION_CODE ${CODICEFISCALE_MINOR_VERSION})
+
+# Cmake modules setup
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+
+# Set c++11 support
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
+if (COMPILER_SUPPORTS_CXX11)
+  set(my_cxx_flags "-std=c++11")
+elseif (COMPILER_SUPPORTS_CXX0X)
+  set(my_cxx_flags "-std=c++0x")
+else()
+  message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+endif()
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${my_cxx_flags}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${my_cxx_flags}")
+
+# OS Configurations
+if (ANDROID)
+  set(CMAKE_PREFIX_PATH "$ENV{Qt5_android}/lib/cmake/Qt5")
+  set(_dest_dir android/assets)
+
+  # Android .so output
+  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/android/libs/${ARM_TARGET}/)
+else()
+  set(CMAKE_PREFIX_PATH "$ENV{Qt5_host}/lib/cmake/Qt5")
+  if (CMAKE_HOST_APPLE)
+    set(_bundle_bin Demo.app/Contents/MacOS)
+    set(_dest_dir bin/${_bundle_bin})
+  else()
+    set(_dest_dir bin)
+  endif()
+
+  # Desktop build
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+endif()
+
 INCLUDE(DetectMachine)
 
 
@@ -39,6 +86,7 @@ find_package(Qt5Svg REQUIRED)
 find_package(Qt5Qml   REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5PrintSupport REQUIRED)
+find_package(Qt5QuickControls2 REQUIRED)
 
 # set compiler flags
 SET(WERROR_FLAGS "-Wall -Werror=unused-function -Wno-sign-compare -Wno-strict-overflow")
@@ -89,6 +137,9 @@ ADD_SUBDIRECTORY(sql)
 ADD_SUBDIRECTORY(utils)
 ADD_SUBDIRECTORY(cod_fisc)
 ADD_SUBDIRECTORY(update)
+if (ANDROID)
+  add_subdirectory(android)
+endif()
 
 #
 # add distclean-target

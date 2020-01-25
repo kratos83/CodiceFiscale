@@ -41,8 +41,8 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
-import QtQuick.Controls 1.4
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
@@ -90,6 +90,21 @@ Item {
                     Label{id:mSesso;font.pixelSize: 14;font.bold:true;x: 375;y: 158}
                     //Fac simile
                     Label{id: facsimile; text: qsTr("FACSIMILE");font.pixelSize: 22;font.bold:true;x: 260;y: 225}
+                }
+                RowLayout{
+                    Item{
+                        id: spacing3
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 25
+                        Layout.preferredWidth: 30
+                    }
+
+                    Bottone{
+                        id: chiudi
+                        text: qsTr("Torna indietro")
+                        iconSource: "qrc:/images/return.svg"
+                        onClicked: pageImpo.pop(pageMain1)
+                    }
                 }
             }
         }

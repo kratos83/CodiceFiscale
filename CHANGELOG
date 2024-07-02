@@ -1,0 +1,82 @@
+/******************************************
+CodiceFiscale 4.0
+add stilized icon
+add Message dialog qml
+add setting UpperCase to default
+add support qt quick controls 2.0
+remove support qt4
+Add qml support
+Add sql support from qml
+remove interface ui 
+
+/******************************************
+CodiceFiscale 3.0
+Add database for codicefiscale
+remove stati.txt, comuni.txt, comuni_cap
+Add cmake support
+Fix core dumped codicefiscale
+
+/******************************************
+CodiceFiscale 2.2.1
+Fix update for linux and freebsd
+Fix check common for linux and freebsd
+
+/******************************************
+CodiceFiscale 2.2
+Fix update
+Fix version update
+Fix FreeBSD support
+Fix cap. 
+Add 0 to cap
+
+/******************************************
+CodiceFiscale 2.1
+Fix update from mac osx
+Add language selection
+Fix check VAT
+FIX check tax code
+Port qt5 completed
+
+/******************************************
+CodiceFiscale 2.0
+Aggiunto supporto impostazioni
+Aggiunto supporto aggiornamento
+Add cap italian
+Fix save image
+Fix save pdf
+Port qt4 to qt5
+CodiceFiscale 2.0 funziona sia con le qt4
+che con le qt5.
+
+/******************************************
+CodiceFiscale 1.3
+Fix veridicità partita iva italiana
+Fix veridicità codice fiscale
+Fix intensive CPU
+Fix stampa codice fiscale
+*******************************************/
+
+/***************************************
+CodiceFiscale 1.2
+
+Aggiunti comuni entro il 1947
+Fix provincia di nascita
+Fix about 
+Fix qfiledialog
+***************************************/
+
+/***************************************
+CodiceFiscale 1.1
+
+Calcolo del codice fiscale italiano e estero
+Inserita l\\\'opzione di esportazione in immagine e pdf
+Sistemata l\\\'interfaccia grafica
+Inserita stringa nel codice e about \\\"Partial of code Francesco Betti Sorbelli\\\"
+******************************************/
+
+/****************************************
+CodiceFiscale 1.0
+
+Rilascio release stabile
+****************************************/
+

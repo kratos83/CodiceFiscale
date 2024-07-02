@@ -1,0 +1,22 @@
+[Desktop Entry]
+Categories=Application;Office
+Comment[it]=Software per il calcolo del codice fiscale
+Comment=Software per il calcolo del codice fiscale
+Encoding=UTF-8
+Exec=/opt/codicefiscale/codicefiscale
+GenericName[it]=
+GenericName=
+Icon=/opt/codicefiscale/codicefisc.png
+MimeType=
+Name[it]=CodiceFiscale
+Name=CodiceFiscale
+Name[it_IT]=CodiceFiscale
+Path=/opt/codicefiscale
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

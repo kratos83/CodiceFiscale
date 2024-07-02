@@ -26,5 +26,7 @@ echo "Rimozione file moc"
 find . -type f -name 'moc_*' -delete
 echo "Rimozione bin"
 find . -type d -name 'bin' -exec rm -rf {} \;
+echo "Rimozione build"
+find . -type d -name 'build' -exec rm -rf {} \;
 echo "Rimozione file cmake_install.cmake"
 find . -type f -name 'cmake_install.cmake' -delete

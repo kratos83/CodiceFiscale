@@ -2,7 +2,7 @@ CodiceFiscale 4.0
 =========
 
 Calcolo del codice fiscale
-Author 2011-2016 Codelinsoft <info@codelinsoft.it>
+Author 2011-2024 Codelinsoft <info@codelinsoft.it>
 
 Per poter installare CodiceFiscale da sorgente bisogna 
 scaricare il programma all'indirizzo:

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2006-2014 Angelo e Calogero Scarna
+** Copyright (C) 2006-2024 Angelo e Calogero Scarna
 ** Contact: Angelo Scarnà (angelo.scarna@codelinsoft.it)
 **          Calogero Scarnà (calogero.scarna@codelinsoft.it)
 **          Team Codelinsoft (info@codelinsoft.it)
@@ -58,9 +58,9 @@ Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
             GridLayout{
+                anchors.fill: parent
                 rows: 5
                 flow: GridLayout.TopToBottom
-                
                 Image{
                     id: img_about
                     fillMode: Image.Stretch
@@ -77,7 +77,7 @@ Item {
                         id: label_about
                         Layout.fillWidth: true
                         horizontalAlignment: Text.AlignHCenter
-                        text: qsTr("Copyright (C) 2014 Codelinsoft. All rights reserved.")
+                        text: "<font color='black'>"+qsTr("Copyright (C) 2014-2024 Codelinsoft. All rights reserved.")+"</font>"
                     }
                     Item{
                         id: spacing1

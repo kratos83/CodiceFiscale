@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.2
+import QtQuick 2.8
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
@@ -153,14 +153,14 @@ ApplicationWindow {
         Button{
             id:bt_install
             iconSource: "qrc:/images/install.png"
-            text: qsTr("Installa aggiornamento")
+            text: "<font color='black'>"+qsTr("Installa aggiornamento")+"</font>"
             onClicked: {agg.install_package()}
         }
         
         Button{
             id: bt_download
             iconSource: "qrc:/images/upgrade.png"
-            text: qsTr("Download aggiornamento")
+            text: "<font color='black'>"+qsTr("Download aggiornamento")+"</font>"
             onClicked:{bt_pause.enabled=true,agg.download()}
         }
         }

@@ -47,7 +47,7 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 
-Item {
+Rectangle {
     property alias mCodice: mCodice
     property alias mSurname: mSurname
     property alias mName: mName
@@ -56,7 +56,8 @@ Item {
     property alias mData: mData
     property alias mSesso: mSesso
     property alias imgageUpdate: imgageUpdate
-    
+    color: "white"
+
     GridLayout{
         anchors.fill: parent
         flow: GridLayout.TopToBottom
@@ -75,21 +76,21 @@ Item {
                     source: "qrc:/images/codicefiscale.png";
                     
                     //Codice
-                    Label{id: mCodice;font.pixelSize: 14;font.bold:true;x: 80;y: 110 }
+                    Label{id: mCodice;color: 'black'; font.pixelSize: 14;font.bold:true;x: 80;y: 110 }
                     //Cognome
-                    Label{id: mSurname;font.pixelSize: 14;font.bold:true;x: 80;y: 137}
+                    Label{id: mSurname;color: 'black'; font.pixelSize: 14;font.bold:true;x: 80;y: 137}
                     //Nome
-                    Label{id: mName;font.pixelSize: 14;font.bold:true;x: 80;y: 159}
+                    Label{id: mName;color: 'black'; font.pixelSize: 14;font.bold:true;x: 80;y: 159}
                     //Luogo di nascita
-                    Label{id: mLuogoDiNascita;font.pixelSize: 14;font.bold:true;x: 80;y: 185}
+                    Label{id: mLuogoDiNascita;color: 'black'; font.pixelSize: 14;font.bold:true;x: 80;y: 185}
                     //Luogo di nascita
-                    Label{id: mProvincia;font.pixelSize: 14;font.bold:true;x: 80;y: 210}
+                    Label{id: mProvincia;color: 'black';font.pixelSize: 14;font.bold:true;x: 80;y: 210}
                     //Data di nascita
-                    Label{id: mData;font.pixelSize: 14;font.bold:true;x: 80;y: 240}
+                    Label{id: mData;color: 'black';font.pixelSize: 14;font.bold:true;x: 80;y: 240}
                     //Sesso
-                    Label{id:mSesso;font.pixelSize: 14;font.bold:true;x: 375;y: 158}
+                    Label{id:mSesso;color: 'black';font.pixelSize: 14;font.bold:true;x: 375;y: 158}
                     //Fac simile
-                    Label{id: facsimile; text: qsTr("FACSIMILE");font.pixelSize: 22;font.bold:true;x: 260;y: 225}
+                    Label{id: facsimile; text: "<font color='black''>"+qsTr("FACSIMILE")+"</font>";font.pixelSize: 22;font.bold:true;x: 260;y: 225}
                 }
                 RowLayout{
                     Item{
@@ -101,7 +102,7 @@ Item {
 
                     Bottone{
                         id: chiudi
-                        text: qsTr("Torna indietro")
+                        text: "<font color='black'>"+qsTr("Torna indietro")+"</font>"
                         iconSource: "qrc:/images/return.svg"
                         onClicked: pageImpo.pop(pageMain1)
                     }

@@ -48,15 +48,15 @@ function readCodiceFiscale(testo)
     if(testo.length == 0)
     {
         img.source = "qrc:/images/dialog-close.svg"
-        label_text.text=qsTr("Errore: Non hai inserito nessun carattere o numero...")
+        label_text.text="<font color='black'>"+qsTr("Errore: Non hai inserito nessun carattere o numero...")+"</font>"
     }
     
     if(testo.length != 16)
     {
         img.source = "qrc:/images/dialog-close.svg"
-        label_text.text = qsTr("La lunghezza del codice fiscale non è\n"+
+        label_text.text = "<font color='black'>"+qsTr("La lunghezza del codice fiscale non è\n"+
                                 "corretta: il codice fiscale deve essere lungo\n"+
-                                "esattamente 16 caratteri...")
+                                "esattamente 16 caratteri...")+"</font>"
     }
     
     mVal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -64,8 +64,8 @@ function readCodiceFiscale(testo)
     {
         if( mVal.indexOf( testo.charAt(i) ) == -1 ){
             img.source = "qrc:/images/dialog-close.svg"
-            label_text.text = qsTr("Il codice fiscale contiene dei caratteri non validi:\n"+
-                                    "i soli caratteri validi sono le lettere e le cifre.")
+            label_text.text = "<font color='black'>"+qsTr("Il codice fiscale contiene dei caratteri non validi:\n"+
+                                    "i soli caratteri validi sono le lettere e le cifre.")+"</font>"
         }
     }
     
@@ -82,13 +82,13 @@ function readCodiceFiscale(testo)
     if(s%26 != testo.charCodeAt(15)-'A'.charCodeAt(0))
     {
         img.source = "qrc:/images/dialog-close.svg"
-        label_text.text = qsTr("Il codice fiscale inserito non è corretto.\n"+
-                                "Il codice di controllo non corrisponde.")
+        label_text.text = "<font color='black'>"+qsTr("Il codice fiscale inserito non è corretto.\n"+
+                                "Il codice di controllo non corrisponde.")+"</font>"
     }
     else
     {
         img.source = "qrc:/images/dialog-ok-apply.svg"
-        label_text.text = qsTr("Il codice fiscale inserito è corretto.")
+        label_text.text = "<font color='black'>"+qsTr("Il codice fiscale inserito è corretto.")+"</font>"
     }
 }
 
@@ -99,15 +99,15 @@ function controllaPIVA(piva)
     
     if( piva.length == 0 ){ 
         img_iva.source = "qrc:/images/dialog-close.svg";
-        label_iva.text = qsTr("Errore: Non hai inserito nessun numero.")
+        label_iva.text = "<font color='black'>"+qsTr("Errore: Non hai inserito nessun numero.")+"</font>"
     }
 
     if( piva.length != 11 )
     {
         img_iva.source = "qrc:/images/dialog-close.svg";
-        label_iva.text = qsTr("La lunghezza della partita IVA non è\n"+
+        label_iva.text = "<font color='black'>"+qsTr("La lunghezza della partita IVA non è\n"+
                                "corretta: la partita iva deve essere lunga\n"+
-                               "esattamente 11 caratteri numerici")
+                               "esattamente 11 caratteri numerici")+"</font>"
     }
 
     numero = "0123456789";
@@ -115,9 +115,9 @@ function controllaPIVA(piva)
     for( i = 0; i < 11; i++ ){ 
         if( numero.indexOf( piva.charAt(i) ) == -1 ){
             img_iva.source = "qrc:/images/dialog-close.svg";
-            label_iva.text = qsTr("La lunghezza della partita IVA non è\n"+
+            label_iva.text = "<font color='black'>"+qsTr("La lunghezza della partita IVA non è\n"+
                                "corretta: la partita iva deve essere lunga\n"+
-                               "esattamente 11 caratteri numerici")
+                               "esattamente 11 caratteri numerici")+"</font>"
         }
     }
 
@@ -134,12 +134,12 @@ function controllaPIVA(piva)
 
     if( ( 10 - s%10 )%10 != piva.charCodeAt(10) - '0'.charCodeAt(0)){
         img_iva.source = "qrc:/images/dialog-close.svg";
-        label_iva.text = qsTr("La partita IVA non è valida:\n"+
-                                  "il codice di controllo non corrisponde")
+        label_iva.text = "<font color='black'>"+qsTr("La partita IVA non è valida:\n"+
+                                  "il codice di controllo non corrisponde")+"</font>"
     }
     else{
         img_iva.source = "qrc:/images/dialog-ok-apply.svg"
-        label_iva.text =qsTr("La partita iva è corretta.")
+        label_iva.text ="<font color='black'>"+qsTr("La partita iva è corretta.")+"</font>"
     }
 
 }

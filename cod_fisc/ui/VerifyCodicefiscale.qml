@@ -46,9 +46,10 @@ import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import "script.js" as Verifica
 
-Item {
+Rectangle {
     id: codFisc
-    
+    color: "white"
+
     ColumnLayout{
        id: mainLayout
        anchors.fill: parent
@@ -59,7 +60,7 @@ Item {
             anchors.top: parent.top
             Layout.fillHeight: true
             Layout.fillWidth: true
-            
+            title: "<font color='black'>"+qsTr("Verifica il codice fiscale")+"</font>"
             GridLayout{
                 anchors.fill: parent
                 rows: 4
@@ -74,7 +75,7 @@ Item {
                 RowLayout{
                     
                     Label{
-                        text: qsTr("Inserisci il codice fiscale")
+                        text: "<font color='black'>"+qsTr("Inserisci il codice fiscale")+"</font>"
                     }
         
                     TextField{
@@ -104,14 +105,14 @@ Item {
                     }
                     Bottone{
                         id: bt_ver
-                        text: qsTr("Verifica")
+                        text: "<font color='black'>"+qsTr("Verifica")+"</font>"
                         iconSource: "qrc:/images/dialog-ok-apply.svg"
                         onClicked: Verifica.readCodiceFiscale(txt.text)
                     }
         
                     Bottone{
                         id: bt_ex
-                        text: qsTr("Torna indietro")
+                        text: "<font color='black'>"+qsTr("Torna indietro")+"</font>"
                         iconSource: "qrc:/images/return.svg"
                         onClicked: pageImpo.pop(pageMain1)
                     }

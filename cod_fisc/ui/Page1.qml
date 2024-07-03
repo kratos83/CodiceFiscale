@@ -46,20 +46,21 @@ import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
 
-Item {
+Rectangle {
     property alias comboFontEditor: comboFontEditor
     property alias spin: spin
     property alias mcomboFontEditor: mcomboFontEditor
     property alias mspin: mspin
     property alias combo_lng: combo_lng
     signal loadApply
+    color: "white"
     
     GridLayout{
          anchors.fill: parent
          rows: 5
          flow: GridLayout.TopToBottom
          GroupBox{
-             title: qsTr("Impostazioni generali")
+             title: "<font color='black'>"+qsTr("Impostazioni generali")+"</font>"
              anchors.top: parent.top
              Layout.fillHeight: true
              Layout.fillWidth: true
@@ -68,7 +69,7 @@ Item {
                  flow: GridLayout.TopToBottom
                  rows: 4
                  GroupBox{
-                    title: qsTr("Font editor")
+                    title: "<font color='black'>"+qsTr("Font editor")+"</font>"
                     anchors.top: parent.top
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -79,7 +80,7 @@ Item {
                                 Label{
                                     id:lab_font
                                     Layout.fillWidth: true
-                                    text: qsTr("Font Name")
+                                    text: "<font color='black'>"+qsTr("Font Name")+"</font>"
                                 }
                                 Item{
                                     id: spacing
@@ -89,7 +90,7 @@ Item {
                                 Label{
                                     id: fontSize
                                     Layout.fillWidth: true
-                                    text: qsTr("Font size")
+                                    text: "<font color='black'>"+qsTr("Font size")+"</font>"
                                 }
                                 Item{
                                     id: spacing1
@@ -99,6 +100,7 @@ Item {
                                 ComboBox{
                                     id: comboFontEditor
                                     Layout.fillWidth: true
+                                    editable: true
                                     model: Qt.fontFamilies()
                                 }
                                 Item{
@@ -119,7 +121,7 @@ Item {
                             }
                         }
                         GroupBox{
-                            title: qsTr("Font application")
+                            title: "<font color='black'>"+qsTr("Font application")+"</font>"
                             anchors.horizontalCenter: parent.horizontalCenter
                             Layout.fillHeight: true
                             Layout.fillWidth: true
@@ -130,7 +132,7 @@ Item {
                                 Label{
                                     id:mlab_font
                                     Layout.fillWidth: true
-                                    text: qsTr("Font Name")
+                                    text: "<font color='black'>"+qsTr("Font Name")+"</font>"
                                 }
                                 Item{
                                     id: spacing5
@@ -140,7 +142,7 @@ Item {
                                 Label{
                                     id: mfontSize
                                     Layout.fillWidth: true
-                                    text: qsTr("Font size")
+                                    text: "<font color='black'>"+qsTr("Font size")+"</font>"
                                 }
                                 Item{
                                     id: spacing6
@@ -150,6 +152,7 @@ Item {
                                 ComboBox{
                                     id: mcomboFontEditor
                                     Layout.fillWidth: true
+                                    editable: true
                                     model: Qt.fontFamilies()
                                 }
                                 Item{
@@ -165,7 +168,7 @@ Item {
                             }
                         }
                         GroupBox{
-                            title: qsTr("Selezione della lingua")
+                            title: "<font color='black'>"+qsTr("Selezione della lingua")+"</font>"
                             anchors.bottom: parent.bottom
                             Layout.fillHeight: true
                             Layout.fillWidth: true
@@ -176,7 +179,7 @@ Item {
                                 Label{
                                     id:mlab_lng
                                     Layout.fillWidth: true
-                                    text: qsTr("Seleziona la lingua")
+                                    text: "<font color='black'>"+qsTr("Seleziona la lingua")+"</font>"
                                 }
                                 Item{
                                     id: spacing10
@@ -196,7 +199,7 @@ Item {
                                 Label{
                                     id: label_reb
                                     Layout.fillWidth: true
-                                    text: qsTr("La selezione della lingua richiede il riavvio...")
+                                    text: "<font color='black'>"+qsTr("La selezione della lingua richiede il riavvio...")+"</font>"
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 Item{
@@ -216,13 +219,13 @@ Item {
                 }
                 Bottone{
                     id: bt_ex
-                    text: qsTr("Torna indietro")
+                    text: "<font color='black'>"+qsTr("Torna indietro")+"</font>"
                     iconSource: "qrc:/images/return.svg"
                     onClicked: pageImpo.pop(pageMain1)
                 }
                 Bottone{
                     id: bt_app
-                    text: qsTr("Applica")
+                    text: "<font color='black'>"+qsTr("Applica")+"</font>"
                     iconSource: "qrc:/images/dialog-ok-apply.svg"
                     onClicked: applica()
                 }

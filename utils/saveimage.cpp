@@ -27,7 +27,7 @@ SaveImage::SaveImage(QQuickItem *parent) : QQuickItem(parent)
 
 void SaveImage::saveImages(QQuickItem *item)
 {
-    auto grabResult = item->grabToImage();
+    auto grabResult = item->grabToImage() ;
     
     /*
      * Bug presente nell'apertura della finestra di dialogo
@@ -51,7 +51,7 @@ void SaveImage::saveImages(QQuickItem *item)
  if (fileName.length() != 0) {
      // Aggiunge estensione alla fine del file se non c'è
      if (fileName.indexOf(".png") < 0) {
-  fileName += ".png";
+        fileName += ".png";
      }
  }
 
@@ -101,10 +101,10 @@ nomeFile << dialog.selectedFiles();
      */
     Q_UNUSED(printer);
 
-    printer->setPageSize(QPrinter::A7);
+    printer->setPageSize(QPageSize::A7);
     printer->setOutputFileName(fileName);
     QImage image_800x600 = QImage(":/images/codicefiscale_800x600.png");
-    printer->setOrientation(QPrinter::Landscape);
+    printer->setPageOrientation(QPageLayout::Landscape);
     printer->setResolution(254);
 
      QPainter *painter = new QPainter(printer);
@@ -142,9 +142,9 @@ void SaveImage::anteprima(QPrinter* printer)
     */
     Q_UNUSED(printer);
 
-    printer->setPageSize(QPrinter::A7);
+    printer->setPageSize(QPageSize::A7);
     QImage image_800x600 = QImage(":/images/codicefiscale_800x600.png");
-    printer->setOrientation(QPrinter::Landscape);
+    printer->setPageOrientation(QPageLayout::Landscape);
     printer->setResolution(254);
 
 

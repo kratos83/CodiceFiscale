@@ -47,10 +47,10 @@ import QtQuick.Window 2.0
 import Codelinsoft.Sql 1.0
 //import Codelinsoft.Utils 1.0
 
-Item {
+Rectangle {
     id: cap
     property string testo
-    
+    color: "white"
     ColumnLayout{
        id: mainLayout
        anchors.fill: parent
@@ -58,7 +58,7 @@ Item {
        
         GroupBox{
             id: box
-            title: qsTr("Cerca CAP( Codici avviamento postali )")
+            title: "<font color='black'>"+qsTr("Cerca CAP( Codici avviamento postali )")+"</font>"
             anchors.top: parent.top
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -77,10 +77,11 @@ Item {
                 
                 RowLayout{
                     Label{
+                        color: 'black'
                         text: qsTr("Seleziona comune")
                     }
 
-                    COComboBox{
+                    ComboBox{
                         id:combo
                         Layout.fillWidth: true
                         editable: true
@@ -101,6 +102,7 @@ Item {
                     horizontalAlignment: Text.AlignVCenter
                     text: testo
                     font.pixelSize: 28
+                    color: "black"
                 }
                 Item{
                     id:spacing2

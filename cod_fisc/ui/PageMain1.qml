@@ -60,7 +60,7 @@ Rectangle {
     property alias calendario: calendario
     property alias calcolo: calcolo
     signal applica;
-    
+    color: "white"
     GridLayout{
         anchors.fill: parent
         flow: GridLayout.TopToBottom
@@ -75,42 +75,42 @@ Rectangle {
                 RowLayout{
                     Label{
                         id: cog
-                        text: qsTr("Cognome")
+                        text: "<font color='black'>"+qsTr("Cognome")+"</font>"
                     }
                     TextField{
                         id: cognome
                         Layout.fillWidth: true
                         focus: true
-                        placeholderText: qsTr("Cognome")
+                        placeholderText: "<font color='black'>"+qsTr("Cognome")+"</font>"
                         onTextChanged: {text=text.toUpperCase();pageMain2.mSurname.text=cognome.text; }
                     }
                 }
                 RowLayout{
                     Label{
                         id: nom
-                        text: qsTr("Nome")
+                        text: "<font color='black'>"+qsTr("Nome")+"</font>"
                     }
                     TextField{
                         id: nome
                         Layout.fillWidth: true
                         focus: true
-                        placeholderText: qsTr("Nome")
+                        placeholderText: "<font color='black'>"+qsTr("Nome")+"</font>"
                         onTextChanged: {text=text.toUpperCase();pageMain2.mName.text=nome.text; }
                     }
                 }
                 RowLayout{
                     Label{
                         id: sex
-                        text: qsTr("Sesso")
+                        text: "<font color='black'>"+qsTr("Sesso")+"</font>"
                     }
                     RadioButton{
                         id: maschio
-                        text: qsTr("M")
+                        text: "<font color='black'>"+qsTr("M")+"</font>"
                         onClicked:{ pageMain2.mSesso.text=maschio.text; femmina.checked=false}
                     }
                     RadioButton{
                         id: femmina
-                        text: qsTr("F")
+                        text: "<font color='black'>"+qsTr("F")+"</font>"
                         onClicked:{ pageMain2.mSesso.text=femmina.text; maschio.checked=false}
                     }
                     Item{
@@ -122,13 +122,14 @@ Rectangle {
                 RowLayout{
                     Label{
                         id: select
-                        text: qsTr("Seleziona")
+                        text: "<font color='black'>"+qsTr("Seleziona")+"</font>"
                     }
                     ComboBox{
                         id: combo
                         editable: true
                         Layout.fillWidth: true
-                        model: [qsTr("Comuni"),qsTr("Stati")]
+                        model: [qsTr("Comuni"),
+                                qsTr("Stati")]
                         onCurrentIndexChanged:{
                             if(combo.currentIndex==0){
                                 combo_cm_st.model=m_model;
@@ -142,7 +143,7 @@ Rectangle {
                 RowLayout{
                     Label{
                         id: lab_cm_st
-                        text: qsTr("Comuni o Stato")
+                        text: "<font color='black'>"+qsTr("Comuni o Stato")+"</font>"
                     }
                     ComboBox{
                         id: combo_cm_st
@@ -155,7 +156,7 @@ Rectangle {
                 RowLayout{
                     Label{
                         id: date 
-                        text: qsTr("Data di nascita")
+                        text: "<font color='black'>"+qsTr("Data di nascita")+"</font>"
                     }
                     Calendario{
                         id: calendario
@@ -170,7 +171,7 @@ Rectangle {
                 RowLayout{
                     Label{
                         id: codice
-                        text: qsTr("Codice Fiscale")
+                        text: "<font color='black'>"+qsTr("Codice Fiscale")+"</font>"
                     }
                     TextField{
                         id: calcolo
@@ -179,7 +180,7 @@ Rectangle {
                         Layout.fillWidth: true
                         font.pixelSize: 20
                         font.bold:true
-                        placeholderText: qsTr("Calcolo codice fiscale")
+                        placeholderText: "<font color='black'>"+qsTr("Calcolo codice fiscale")+"</font>"
                         onTextChanged: {pageMain2.mCodice.text=calcolo.text; }
                     }
                 }

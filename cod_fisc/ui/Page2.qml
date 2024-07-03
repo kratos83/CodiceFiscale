@@ -46,17 +46,18 @@ import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
 
-Item {
+Rectangle {
     property alias radioUpAgg: radioUpAgg
     property alias radioDisAgg: radioDisAgg
     property alias btImpoAgg: btImpoAgg
+    color: "white"
     signal loadApply
     
     GridLayout{
          anchors.fill: parent
          flow: GridLayout.TopToBottom
          GroupBox{
-             title: qsTr("Aggiornamento")
+             title: "<font color='black'>"+qsTr("Aggiornamento")+"</font>"
              anchors.top: parent.top
              Layout.fillHeight: true
              Layout.fillWidth: true
@@ -68,7 +69,7 @@ Item {
                     id: radioUpAgg
                     checked: false
                     Layout.fillWidth: true
-                    text: qsTr("Abilita aggiornamenti")
+                    text: "<font color='black'>"+qsTr("Abilita aggiornamenti")+"</font>"
                     onClicked: {
                             radioDisAgg.checked=false
                             btImpoAgg.visible=true
@@ -83,7 +84,7 @@ Item {
                     id: radioDisAgg
                     checked: false
                     Layout.fillWidth: true
-                    text: qsTr("Disabilita aggiornamenti")
+                    text: "<font color='black'>"+qsTr("Disabilita aggiornamenti")+"</font>"
                     onClicked: {
                             radioUpAgg.checked=false
                             btImpoAgg.visible=false

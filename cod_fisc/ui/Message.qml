@@ -63,14 +63,15 @@ Dialog {
         anchors.fill: parent
         spacing: 4
         GridLayout{
-            anchors.fill: parent
+            Layout.fillWidth: true
+            Layout.fillHeight: true
             rows: 3
             flow: GridLayout.TopToBottom
             RowLayout{
                 Image{
                     id: img_icon
                     fillMode: Image.Stretch
-                    anchors.left: parent.left
+                    Layout.alignment: Qt.AlignLeft
                     source: icon;
                 }
                 Label{

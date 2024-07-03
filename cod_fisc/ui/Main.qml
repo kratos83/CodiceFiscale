@@ -53,12 +53,16 @@ import "script.js" as Script
 
 ApplicationWindow {
     id: window
+    background: Rectangle {
+        anchors.fill: parent
+        color : "white"
+    }
     visible: true
     width: 470
     height: 470
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
-    title: qsTr("CodiceFiscale")+" "+manager.generalValue("Version/version") 
+    title: "<font color='black'>"+qsTr("CodiceFiscale")+"</font>"+" "+manager.generalValue("Version/version")
     property alias dat: dat 
     property alias pageImpo: pageImpo
     property alias m_model: m_model
@@ -121,7 +125,7 @@ ApplicationWindow {
         Bottone{
             id: men
             iconSource: "qrc:/images/icon_menu_gray.svg"
-            toolTip: qsTr("Menu")
+            toolTip: "<font color='black'>"+qsTr("Menu")+"</font>"
             onClicked: onMenu()
         }
         Item{ 
@@ -135,6 +139,7 @@ ApplicationWindow {
         z: 3
         x: -menuWidth
         antialiasing: true
+        color: 'white'
         
         Behavior on x { NumberAnimation { duration: 500; easing.type: Easing.OutQuad } }
         onXChanged: {
@@ -165,19 +170,23 @@ ApplicationWindow {
             }
         }
         ToolBar{
+            background: Rectangle {
+                anchors.fill: parent
+                color : "white"
+            }
             ColumnLayout{
                 BarButton{
-                    testo: qsTr("Esci")
+                    testo: "<font color='black'>"+qsTr("Esci")+"</font>"
                     iconSource: "qrc:/images/exit.svg"
                     onClicked: Qt.quit()
                 }
                 BarButton{
-                    testo: qsTr("Stampa")
+                    testo: "<font color='black'>"+qsTr("Stampa")+"</font>"
                     iconSource: "qrc:/images/document-print.svg"
                     onClicked: {onMenu();saveimage.stampaCodice();}
                 }
                 BarButton{
-                    testo: qsTr("Visualizza anteprima");
+                    testo: "<font color='black'>"+qsTr("Visualizza anteprima")+"</font>";
                     iconSource: "qrc:/images/document-preview.svg"
                     onClicked: {
                         onMenu();
@@ -186,41 +195,41 @@ ApplicationWindow {
                     }
                 }
                 BarButton{
-                    testo: qsTr("Esporta in pdf")
+                    testo: "<font color='black'>"+qsTr("Esporta in pdf")+"</font>"
                     iconSource: "qrc:/images/pdf.svg"
                     onClicked: {onMenu();saveimage.exportPdf()}
                 }
                 BarButton{
-                    testo: qsTr("Esporta in immagine")
+                    testo: "<font color='black'>"+qsTr("Esporta in immagine")+"</font>"
                     onClicked: {onMenu();saveimage.saveImages(pageMain2.imgageUpdate);}
                 }
                 BarButton{
-                    testo: qsTr("Verifica codice fiscale")
+                    testo: "<font color='black'>"+qsTr("Verifica codice fiscale")+"</font>"
                     iconSource: "qrc:/images/codicefisc.png"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("VerifyCodicefiscale.qml"))}
                 }
                 BarButton{
-                    testo: qsTr("Verifica partita iva")
+                    testo: "<font color='black'>"+qsTr("Verifica partita iva")+"</font>"
                     iconSource: "qrc:/images/iva.png"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("VerifyPiva.qml"))}
                 }
                 BarButton{
-                    testo: qsTr("Cerca CAP(Codici avviamenti postali)")
+                    testo: "<font color='black'>"+qsTr("Cerca CAP(Codici avviamenti postali)")+"</font>"
                     iconSource: "qrc:/images/cap.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("FindCapItalian.qml"))}
                 }
                 BarButton{
-                    testo: qsTr("Impostazioni")
+                    testo: "<font color='black'>"+qsTr("Impostazioni")+"</font>"
                     iconSource: "qrc:/images/preferences-system.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("Page1.qml"))}
                 }
                 BarButton{
-                    testo: qsTr("Aggiornamento")
+                    testo: "<font color='black'>"+qsTr("Aggiornamento")+"</font>"
                     iconSource: "qrc:/images/system-software-update.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("Page2.qml"))}
                 }
                 BarButton{
-                    testo: qsTr("About")
+                    testo: "<font color='black'>"+qsTr("About")+"</font>"
                     iconSource: "qrc:/images/info.svg"
                     onClicked: {onMenu();pageImpo.push(Qt.resolvedUrl("About.qml"))}
                 }
@@ -237,7 +246,6 @@ ApplicationWindow {
         id: mainMenu
         z: 1
         anchors.fill: parent
-        color: "grey"
         opacity: window.menuProgressOpening*0.5
     }
     
@@ -248,10 +256,10 @@ ApplicationWindow {
         visible: false
         width: window.width
         height: 100
-        text: qsTr("Impostare il carattere per\nuna corretta visualizzazione\n"+
+        text: "<font color='white'>"+qsTr("Impostare il carattere per\nuna corretta visualizzazione\n"+
                    "Se usi Linux imposta il carattere Noto Sans,\n" +
                    "se usi windows imposta il carattere Tahoma,\n"+
-                   "se usi MacOsX imposta il carattere Fira Sans.")
+                   "se usi MacOsX imposta il carattere Fira Sans.")+"</font>"
     }
        GridLayout{
             anchors.fill: parent
@@ -276,8 +284,8 @@ ApplicationWindow {
                 }
                 Bottone{
                     id: calcola
-                    text: qsTr("Calcola")
-                    toolTip: qsTr("Calcola")
+                    text: "<font color='black'>"+qsTr("Calcola")+"<</font>"
+                    toolTip: "<font color='black'>"+qsTr("Calcola")+"<</font>"
                     iconSource: "qrc:/images/codicefisc.png"
                     onClicked:{
                         if(pageMain1.cognome.text=="" || pageMain1.nome.text == "" 
@@ -290,15 +298,15 @@ ApplicationWindow {
                 }
                 Bottone{
                     id: cancella
-                    text: qsTr("Cancella")
-                    toolTip: qsTr("Cancella")
+                    text: "<font color='black'>"+qsTr("Cancella")+"</font>"
+                    toolTip: "<font color='black'>"+qsTr("Cancella")+"</font>"
                     iconSource: "qrc:/images/edit-delete.svg"
                     onClicked: Script.cancella()
                 }
                 Bottone{
                     id: esci
-                    text: qsTr("Esci")
-                    toolTip: qsTr("Esci")
+                    text: "<font color='black'>"+qsTr("Esci")+"</font>"
+                    toolTip: "<font color='black'>"+qsTr("Esci")+"</font>"
                     iconSource: "qrc:/images/dialog-close.svg"
                     onClicked: Qt.quit();
                 }
@@ -321,11 +329,11 @@ ApplicationWindow {
     
     Message {
         id: messageDialog
-        titolo: qsTr("CodiceFiscale")
-        informativeText: qsTr("Inserisci i dati correttamente.\n\n"+
+        titolo: "<font color='black'>"+qsTr("CodiceFiscale")+"</font>"
+        informativeText: "<font color='black'>"+qsTr("Inserisci i dati correttamente.\n\n"+
                    "Controlla il cognome\n"+
                    "Controlla il nome\n"+
-                   "Controlla il sesso")
+                   "Controlla il sesso")+"</font>"
         icon: "qrc:/images/dialog-warning.svg"
         visible: false
     }

@@ -46,8 +46,10 @@ import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import Codelinsoft.Utils 1.0
 
-Item {
+Rectangle {
     id: about
+    color: "white"
+
     ColumnLayout{
         id: mainLayout
         anchors.fill: parent
@@ -95,7 +97,7 @@ Item {
                         id: label_qt
                         Layout.fillWidth: true
                         horizontalAlignment: Text.AlignHCenter
-                        text: qsTr("Compilato con le Qt: ")+setting.GetVersioneQt()
+                        text: "<font color='black'>"+qsTr("Compilato con le Qt: ")+setting.GetVersioneQt()+"</font>"
                     }
                     Item{
                         id: spacing3
@@ -113,7 +115,7 @@ Item {
                         id: label_ver
                         Layout.fillWidth: true
                         horizontalAlignment: Text.AlignHCenter
-                        text: qsTr("Versione del software: ")+manager.generalValue("Version/version")
+                        text: "<font color='black'>"+qsTr("Versione del software: ")+manager.generalValue("Version/version")+"</font>"
                     }
                     Item{
                         id: spacing5
@@ -129,7 +131,7 @@ Item {
                     }
                     Bottone{
                         id: bt_about
-                        text: qsTr("Torna indietro")
+                        text: "<font color='black'>"+qsTr("Torna indietro")+"</font>"
                         iconSource: "qrc:/images/return.svg"
                         onClicked: pageImpo.pop(pageMain1)
                     }

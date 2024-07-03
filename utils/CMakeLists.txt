@@ -56,7 +56,7 @@ endif(WIN32)
 
 target_include_directories(utils SYSTEM PRIVATE ${Qt5Quick_PRIVATE_INCLUDE_DIRS})
 
-target_link_libraries(utils PUBLIC Qt5::Widgets Qt5::Core Qt5::Sql 
+target_link_libraries(utils PUBLIC Qt5::Widgets Qt5::Core Qt5::Sql
                 Qt5::Qml Qt5::Quick Qt5::PrintSupport
                 Qt5::Xml Qt5::Network Qt5::Quick Qt5::Qml)
                 

@@ -45,7 +45,7 @@ import QtQuick 2.7
 
 Rectangle {
     id: rectMenu
-    color: "grey"
+    color: 'white'
     width: 100
     opacity: window.menuProgressOpening*0.9
 }

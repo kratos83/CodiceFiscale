@@ -46,9 +46,10 @@ import QtQuick.Layouts 1.2
 import QtQuick.Window 2.0
 import "script.js" as Verifica
 
-Item {
+Rectangle {
     id: pIva
-    
+    color: "white"
+
     ColumnLayout{
        id: mainLayout
        anchors.fill: parent
@@ -59,6 +60,7 @@ Item {
             anchors.top: parent.top
             Layout.fillHeight: true
             Layout.fillWidth: true
+            title: "<font color='black'>"+qsTr("Verifica la partita iva")+"</font>"
             
             GridLayout{
                 anchors.fill: parent
@@ -75,7 +77,7 @@ Item {
                 RowLayout{
                     
                     Label{
-                        text: qsTr("Inserisci la partita iva")
+                        text: "<font color='black'>"+qsTr("Inserisci la partita iva")+"</font>"
                     }
         
                     TextField{
@@ -104,14 +106,14 @@ Item {
                     }
                     Bottone{
                         id: bt_ver
-                        text: qsTr("Verifica")
+                        text: "<font color='black'>"+qsTr("Verifica")+"</font>"
                         iconSource: "qrc:/images/dialog-ok-apply.svg"
                         onClicked: Verifica.controllaPIVA(txt.text)
                     }
         
                     Bottone{
                         id: bt_ex
-                        text: qsTr("Torna indietro")
+                        text: "<font color='black'>"+qsTr("Torna indietro")+"</font>"
                         iconSource: "qrc:/images/return.svg"
                         onClicked: pageImpo.pop(pageMain1)
                     }

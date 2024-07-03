@@ -168,5 +168,6 @@ add_custom_target(codifiscplugindir ALL
     COMMAND ${CMAKE_COMMAND} -E copy "../sql/qmldir" "${CODFISC}/Codelinsoft/Sql"
     COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Utils"
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:utils> "${CODFISC}/Codelinsoft/Utils"
-    COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils")
+    COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils"
+    COMMAND ${CMAKE_COMMAND} -E copy "../cod_fisc/codicefiscale.db" "${CODFISC}")
 add_dependencies(codicefiscale codifiscplugindir)

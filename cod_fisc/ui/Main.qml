@@ -62,7 +62,7 @@ ApplicationWindow {
     height: 470
     x: Screen.width / 2 - width / 2
     y: Screen.height / 2 - height / 2
-    title: "<font color='black'>"+qsTr("CodiceFiscale")+"</font>"+" "+manager.generalValue("Version/version")
+    title: qsTr("CodiceFiscale")+" "+manager.generalValue("Version/version")
     property alias dat: dat 
     property alias pageImpo: pageImpo
     property alias m_model: m_model

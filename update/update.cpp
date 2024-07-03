@@ -23,9 +23,9 @@ void update::download(){
     //Avvia processo di cambio permessi su linux e freebsd
     QProcess *lin_start = new QProcess(this);
 #if defined (Q_OS_LINUX)
-    lin_start->start("pkexec chmod 777 /opt/codicefiscale");
+    lin_start->start("pkexec chmod 777 /opt/codicefiscale",QStringList());
 #elif defined(Q_OS_FREEBSD)
-    lin_start->start("sudo chmod 777 /opt/codicefiscale");
+    lin_start->start("sudo chmod 777 /opt/codicefiscale",QStringList());
 #endif
 
     QUrl url(testoUrl()+testoPkg());
@@ -167,19 +167,19 @@ void update::install_package(){
 #if defined(Q_OS_LINUX)
     lin_start = new QProcess(this);
     connect(lin_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
-    lin_start->start("pkexec unzip -o "+file_dir+" -d /opt/codicefiscale/");
+    lin_start->start("pkexec unzip -o "+file_dir+" -d /opt/codicefiscale/",QStringList());
 #elif defined(Q_OS_WIN)
     win_start = new QProcess(this);
     connect(win_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
-    win_start->start("C:\\CodiceFiscale\\windows\\unzip -o "+file_dir+" -d C:\\CodiceFiscale");
+    win_start->start("C:\\CodiceFiscale\\windows\\unzip -o "+file_dir+" -d C:\\CodiceFiscale",QStringList());
 #elif defined(Q_OS_MAC64)
     mac_start = new QProcess(this);
     connect(mac_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
-    mac_start->start("unzip -o "+file_dir+" -d /Applications/CodiceFiscale/");
+    mac_start->start("unzip -o "+file_dir+" -d /Applications/CodiceFiscale/",QStringList());
 #elif defined(Q_OS_FREEBSD)
    unix_start = new QProcess(this);
    connect(unix_start,SIGNAL(readyReadStandardOutput()),this,SLOT(display_progress_bar()));
-   unix_start->start("sudo unzip -o "+file_dir+" -d /opt/codicefiscale/");
+   unix_start->start("sudo unzip -o "+file_dir+" -d /opt/codicefiscale/",QStringList());
 #endif
 }
 

@@ -123,13 +123,13 @@ void pref::self_update_parse(QNetworkReply* reply){
 void pref::up_dw(QString package, QString url){
     process = new QProcess(this);
 #if defined(Q_OS_LINUX)
-    process->startDetached("./update -u "+url+" -p "+package);
+    process->startDetached("./update -u "+url+" -p "+package,QStringList());
 #elif defined(Q_OS_WIN)
-    process->start("C:\\CodiceFiscale\\update.exe -u "+url+" -p "+package);
+    process->start("C:\\CodiceFiscale\\update.exe -u "+url+" -p "+package,QStringList());
 #elif defined(Q_OS_MACX)
-    process->start("./update.app/Contents/MacOS/update -u "+url+" -p "+package);
+    process->start("./update.app/Contents/MacOS/update -u "+url+" -p "+package,QStringList());
 #elif defined(Q_OS_FREEBSD)
-    process->start("./update -u "+url+" -p "+package);
+    process->start("./update -u "+url+" -p "+package,QStringList());
 #endif
 }
 

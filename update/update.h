@@ -46,7 +46,7 @@
 #include <QFile>
 #include <QObject>
 #include <QQueue>
-#include <QTime>
+#include <QElapsedTimer>
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -190,7 +190,7 @@ private:
      *
      * \brief <b>int downloadedCount;</b>
      */
-    QTime downloadTime;
+    QElapsedTimer downloadTime;
 
     /*!
      * lin_start serve ad avviare i processi su linux

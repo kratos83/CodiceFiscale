@@ -194,7 +194,9 @@ IF(WIN32)
 	SET(CPACK_NSIS_INSTALLER_MUI_ICON_CODE "
 		!define MUI_ICON  \\\"${CMAKE_SOURCE_DIR}/cod_fisc/images/codice_fisc.ico\\\"
 		!define MUI_UNIICON \\\"${CMAKE_SOURCE_DIR}/cod_fisc/images/codice_fisc.ico\\\" ")
-	SET(CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE " !define MUI_FINISHPAGE_RUN \\\"$INSTDIR\\\\codicefiscale.exe\\\" 							           !define MUI_FINISHPAGE_SHOWREADME \\\"$INSTDIR\\\\README.txt\\\" ")
+	SET(CPACK_NSIS_INSTALLER_MUI_FINISHPAGE_RUN_CODE
+	"!define MUI_FINISHPAGE_RUN \\\"$INSTDIR\\\\codicefiscale.exe\\\"
+	!define MUI_FINISHPAGE_SHOWREADME \\\"$INSTDIR\\\\README.txt\\\" ")
 	SET(CPACK_NSIS_INSTALLED_ICON_NAME "codicefiscale.exe")
 	SET(CPACK_NSIS_DISPLAY_NAME "CodiceFiscale ${VERSION}")
 	SET(CPACK_NSIS_HELP_LINK "http://www.codelinsoft.it")

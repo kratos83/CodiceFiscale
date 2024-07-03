@@ -93,62 +93,88 @@ IF(WIN32)
 		"${MINGW_PREFIX}/bin/Qt5Svg.dll"
 		"${MINGW_PREFIX}/bin/Qt5Xml.dll"
 		"${MINGW_PREFIX}/bin/Qt5Network.dll"
+		"${MINGW_PREFIX}/bin/Qt5Multimedia.dll"
+		"${MINGW_PREFIX}/bin/Qt5MultimediaWidgets.dll"
 		"${MINGW_PREFIX}/bin/Qt5Sql.dll"
 		"${MINGW_PREFIX}/bin/Qt5Widgets.dll"
-		"${MINGW_PREFIX}/bin/Qt5Qml.dll"
-        "${MINGW_PREFIX}/bin/Qt5Quick.dll"
 		"${MINGW_PREFIX}/bin/Qt5PrintSupport.dll"
+		"${MINGW_PREFIX}/bin/Qt5OpenGL.dll"
+		"${MINGW_PREFIX}/bin/Qt5Concurrent.dll"
 		"${MINGW_PREFIX}/bin/libexpat-1.dll"
-		"${MINGW_PREFIX}/bin/libjpeg-62.dll"
 		"${MINGW_PREFIX}/bin/libpng16-16.dll"
 		"${MINGW_PREFIX}/bin/libstdc++-6.dll"
-		"${MINGW_PREFIX}/bin/libtiff-5.dll"
-		"${MINGW_PREFIX}/bin/libtiffxx-5.dll"
+		"${MINGW_PREFIX}/bin/libtiff-6.dll"
+		"${MINGW_PREFIX}/bin/libtiffxx-6.dll"
 		"${MINGW_PREFIX}/bin/libturbojpeg.dll"
 		"${MINGW_PREFIX}/bin/zlib1.dll"
 		"${MINGW_PREFIX}/bin/libwinpthread-1.dll"
-		"${MINGW_PREFIX}/bin/libgcc_s_sjlj-1.dll"
+		"${MINGW_PREFIX}/bin/libgcc_s_seh-1.dll"
 		"${MINGW_PREFIX}/bin/libsqlite3-0.dll"
-		"${MINGW_PREFIX}/bin/iconv.dll"
-		"${MINGW_PREFIX}/bin/libGLESv2.dll"
 		"${MINGW_PREFIX}/bin/libfreetype-6.dll"
 		"${MINGW_PREFIX}/bin/libglib-2.0-0.dll"
 		"${MINGW_PREFIX}/bin/libharfbuzz-0.dll"
-		"${MINGW_PREFIX}/bin/libpcre16-0.dll"
-		"${MINGW_PREFIX}/bin/libintl-8.dll"
+		"${MINGW_PREFIX}/bin/libpcre2-16-0.dll"
 		"${MINGW_PREFIX}/bin/libbz2-1.dll"
-		"${MINGW_PREFIX}/bin/libpcre-1.dll"
-		"${MINGW_PREFIX}/bin/d3dcompiler_47.dll"
-		"${MINGW_PREFIX}/bin/libEGL.dll"
+		"${MINGW_PREFIX}/bin/libmariadb.dll"
+		"${MINGW_PREFIX}/bin/libiconv-2.dll"
+		"${MINGW_PREFIX}/bin/libssp-0.dll"
+		"${MINGW_PREFIX}/bin/libzstd.dll"
+		"${MINGW_PREFIX}/bin/libgraphite2.dll"
+		"${MINGW_PREFIX}/bin/libintl-8.dll"
+		"${MINGW_PREFIX}/bin/libbrotlidec.dll"
+		"${MINGW_PREFIX}/bin/libbrotlicommon.dll"
+		"${MINGW_PREFIX}/bin/libpcre2-8-0.dll"
+		"${MINGW_PREFIX}/bin/libcrypto-3-x64.dll"
+		"${MINGW_PREFIX}/bin/libssl-3-x64.dll"
+		"${MINGW_PREFIX}/bin/libjpeg-8.dll"
+		"${MINGW_PREFIX}/bin/Qt5Qml.dll"
+		"${MINGW_PREFIX}/bin/Qt5Quick.dll"
+		"${MINGW_PREFIX}/bin/Qt5QuickControls2.dll"
+		"${MINGW_PREFIX}/bin/Qt5QuickWidgets.dll"
+		"${MINGW_PREFIX}/bin/Qt5QmlModels.dll"
+		"${MINGW_PREFIX}/bin/Qt5QmlWorkerScript.dll"
+		"${MINGW_PREFIX}/bin/Qt5QuickTemplates2.dll"
+		"${MINGW_PREFIX}/bin/Qt5QuickTemplates2.dll"
 		"codicefiscale.db"
 		"../README.txt"
 		DESTINATION .
 		)
 	INSTALL(FILES 
-		"${MINGW_PREFIX}/lib/qt5/plugins/sqldrivers/qsqlite.dll" DESTINATION ./sqldrivers
-		)
-	INSTALL(FILES 
-		"${MINGW_PREFIX}/lib/qt5/plugins/platforms/qminimal.dll" 
-		"${MINGW_PREFIX}/lib/qt5/plugins/platforms/qwindows.dll"
-		DESTINATION ./platforms
-		)
-	INSTALL(FILES 
-		"${MINGW_PREFIX}/lib/qt5/plugins/printsupport/windowsprintersupport.dll" 
-		DESTINATION ./printsupport
+		"${MINGW_PREFIX}/lib/qt/plugins/sqldrivers/qsqlite.dll" DESTINATION ./sqldrivers
 		)
     INSTALL(DIRECTORY
-        "${MINGW_PREFIX}/lib/qt5/plugins/imageformats/"
-        DESTINATION ./imageformats
-    )
-    INSTALL(DIRECTORY
-        "${MINGW_PREFIX}/share/qt5/qml/QtQuick/"
+        "${MINGW_PREFIX}/lib/qt/qml/QtQuick/"
         DESTINATION ./QtQuick)
     INSTALL(DIRECTORY
-        "${MINGW_PREFIX}/share/qt5/qml/QtQuick.2/"
+        "${MINGW_PREFIX}/lib/qt/qml/QtQuick.2/"
         DESTINATION ./QtQuick.2)
     INSTALL(DIRECTORY
-        "Codelinsoft/"
+        "../bin/Codelinsoft/"
         DESTINATION ./Codelinsoft)
+	INSTALL(FILES
+		"${MINGW_PREFIX}/lib/qt/plugins/platforms/qminimal.dll"
+		"${MINGW_PREFIX}/lib/qt/plugins/platforms/qwindows.dll"
+		DESTINATION ./platforms
+		)
+	INSTALL(FILES
+		"${MINGW_PREFIX}/lib/qt/plugins/audio/qtaudio_windows.dll"
+		DESTINATION ./audio
+		)
+	INSTALL(FILES
+		"${MINGW_PREFIX}/lib/qt/plugins/imageformats/qgif.dll"
+		"${MINGW_PREFIX}/lib/qt/plugins/imageformats/qico.dll"
+		"${MINGW_PREFIX}/lib/qt/plugins/imageformats/qjpeg.dll"
+		"${MINGW_PREFIX}/lib/qt/plugins/imageformats/qsvg.dll"
+		DESTINATION ./imageformats
+		)
+	INSTALL(FILES
+		"${MINGW_PREFIX}/lib/qt/plugins/printsupport/windowsprintersupport.dll"
+		DESTINATION ./printsupport
+		)
+	INSTALL(FILES
+                "${MINGW_PREFIX}/lib/qt/plugins/styles/qwindowsvistastyle.dll"
+                DESTINATION ./styles
+	)
 	INSTALL(FILES
 		"../windows/gunzip.exe"
 		"../windows/gzip.exe"
@@ -159,15 +185,14 @@ ELSE()
     INSTALL( FILES "images/codicefiscale.png" DESTINATION /opt/codicefiscale)
     INSTALL( FILES "desktop/codicefiscale.desktop" DESTINATION /usr/share/applications )
 endif()
-
 get_target_property(CODFISC codicefiscale LOCATION)
 get_filename_component(CODFISC ${CODFISC} PATH)
 add_custom_target(codifiscplugindir ALL
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Sql"
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:sqldatabase> "${CODFISC}/Codelinsoft/Sql"
-    COMMAND ${CMAKE_COMMAND} -E copy "../sql/qmldir" "${CODFISC}/Codelinsoft/Sql"
-    COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Utils"
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:utils> "${CODFISC}/Codelinsoft/Utils"
-    COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils"
-    COMMAND ${CMAKE_COMMAND} -E copy "../cod_fisc/codicefiscale.db" "${CODFISC}")
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Sql"
+		COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:sqldatabase> "${CODFISC}/Codelinsoft/Sql"
+		COMMAND ${CMAKE_COMMAND} -E copy "../sql/qmldir" "${CODFISC}/Codelinsoft/Sql"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Utils"
+		COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:utils> "${CODFISC}/Codelinsoft/Utils"
+		COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils"
+		COMMAND ${CMAKE_COMMAND} -E copy "../cod_fisc/codicefiscale.db" "${CODFISC}")
 add_dependencies(codicefiscale codifiscplugindir)

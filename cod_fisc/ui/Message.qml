@@ -57,7 +57,6 @@ Dialog {
     property string informativeText;
     property string titolo;
     property string icon;
-    
     ColumnLayout{
         id: mainLayout
         anchors.fill: parent

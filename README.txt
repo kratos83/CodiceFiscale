@@ -13,3 +13,4 @@ cmake -DCMAKE_INSTALL_PREFIX=directory
 
 make-j5
 sudo make install
+

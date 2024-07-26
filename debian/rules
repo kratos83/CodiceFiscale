@@ -17,7 +17,7 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 endif
 
 build: 
-	cmake -DCMAKE_INSTALL_PREFIX=/opt -DWANT_QT5=ON
+	cmake -DCMAKE_INSTALL_PREFIX=/opt
 	$(MAKE) -j5
 	touch build
 	
@@ -37,6 +37,8 @@ install: build
 	dh_prep
 	dh_installdirs
 	$(MAKE) DESTDIR=$(CURDIR)/debian/codicefiscale $(INSTALL_PROGRAM)
+	cp -rv $(CURDIR)/cod_fisc/codicefiscale.db $(CURDIR)/debian/codicefiscale/opt/codicefiscale
+	cp -rv $(CURDIR)/bin/Codelinsoft $(CURDIR)/debian/codicefiscale/opt/codicefiscale
 
 # Build architecture-independent files here.
 binary-indep: build install

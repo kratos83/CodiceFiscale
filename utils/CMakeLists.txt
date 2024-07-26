@@ -1,6 +1,6 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8.7)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 cmake_policy(SET CMP0043 OLD)
-
+set(CMAKE_MACOSX_RPATH 1)
 project(utils)
 
 file(GLOB SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
@@ -60,4 +60,4 @@ target_link_libraries(utils PUBLIC Qt5::Widgets Qt5::Core Qt5::Sql
                 Qt5::Qml Qt5::Quick Qt5::PrintSupport
                 Qt5::Xml Qt5::Network Qt5::Quick Qt5::Qml)
                 
-qt5_use_modules(utils Core Widgets Sql Qml Quick QuickControls2)
+#qt5_use_modules(utils Core Widgets Sql Qml Quick QuickControls2)

@@ -180,12 +180,11 @@ IF(WIN32)
 		"../windows/gzip.exe"
 		"../windows/unzip.exe" 
 		DESTINATION ./windows )
-ELSE()
-    INSTALL( TARGETS codicefiscale RUNTIME DESTINATION /opt/codicefiscale)
+ELSEIF(APPLE)
+    INSTALL( TARGETS codicefiscale BUNDLE DESTINATION /opt/codicefiscale)
     INSTALL( FILES "images/codicefiscale.png" DESTINATION /opt/codicefiscale)
     INSTALL( FILES "desktop/codicefiscale.desktop" DESTINATION /usr/share/applications )
-endif()
-get_target_property(CODFISC codicefiscale LOCATION)
+    get_target_property(CODFISC codicefiscale LOCATION)
 get_filename_component(CODFISC ${CODFISC} PATH)
 add_custom_target(codifiscplugindir ALL
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Sql"
@@ -196,3 +195,19 @@ add_custom_target(codifiscplugindir ALL
 		COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils"
 		COMMAND ${CMAKE_COMMAND} -E copy "../cod_fisc/codicefiscale.db" "${CODFISC}")
 add_dependencies(codicefiscale codifiscplugindir)
+ELSE()
+    INSTALL( TARGETS codicefiscale RUNTIME DESTINATION /opt/codicefiscale)
+    INSTALL( FILES "images/codicefiscale.png" DESTINATION /opt/codicefiscale)
+    INSTALL( FILES "desktop/codicefiscale.desktop" DESTINATION /usr/share/applications )
+    get_target_property(CODFISC codicefiscale LOCATION)
+get_filename_component(CODFISC ${CODFISC} PATH)
+add_custom_target(codifiscplugindir ALL
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Sql"
+		COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:sqldatabase> "${CODFISC}/Codelinsoft/Sql"
+		COMMAND ${CMAKE_COMMAND} -E copy "../sql/qmldir" "${CODFISC}/Codelinsoft/Sql"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CODFISC}/Codelinsoft/Utils"
+		COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:utils> "${CODFISC}/Codelinsoft/Utils"
+		COMMAND ${CMAKE_COMMAND} -E copy "../utils/qmldir" "${CODFISC}/Codelinsoft/Utils"
+		COMMAND ${CMAKE_COMMAND} -E copy "../cod_fisc/codicefiscale.db" "${CODFISC}")
+add_dependencies(codicefiscale codifiscplugindir)
+endif()

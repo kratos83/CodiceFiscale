@@ -82,8 +82,10 @@ target_link_libraries( update
 
 IF(WIN32)
     INSTALL( TARGETS update RUNTIME DESTINATION .)
+elseif(APPLE)
+    INSTALL( TARGETS update BUNDLE DESTINATION ${CMAKE_INSTALL_PREFIX}/codicefiscale)
 else()
-    INSTALL( TARGETS update RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/codicefiscale)
+     INSTALL( TARGETS update RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/codicefiscale)
 endif()
 
 # set up apple vars before traversing into data/scripts

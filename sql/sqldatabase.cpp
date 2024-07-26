@@ -70,7 +70,11 @@ void SqlDatabase::setNameDatabase(const QString& name)
 void SqlDatabase::openDatabase()
 {
     QSqlDatabase  db = QSqlDatabase::addDatabase(m_database);
+#if defined Q_OS_MACOS
+    db.setDatabaseName("/Applications/CodiceFiscale/"+name_dat);
+#else
     db.setDatabaseName(name_dat);
+#endif
     if (!db.open())
     {
         qDebug() << "Not connect" << db.lastError().text();
